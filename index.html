@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>星光环境Sound_512种氛围音</title>
+    <style>
+        /* ===== Material Design 3 基础配色 ===== */
+        :root {
+            --card-radius: 12px;
+        }
+        .light-theme {
+            --md-sys-color-primary: #006a6a;
+            --md-sys-color-on-primary: #ffffff;
+            --md-sys-color-primary-container: #6ff7f7;
+            --md-sys-color-on-primary-container: #002020;
+            --md-sys-color-secondary: #4a6363;
+            --md-sys-color-on-secondary: #ffffff;
+            --md-sys-color-surface: #f9fafb;
+            --md-sys-color-on-surface: #1b1c1e;
+            --md-sys-color-surface-variant: #dde4e4;
+            --md-sys-color-on-surface-variant: #414848;
+            --md-sys-color-outline: #717878;
+            --md-sys-color-shadow: #000000;
+            --md-sys-color-surface-tint: #006a6a;
+            --md-sys-color-inverse-surface: #2f3133;
+            --md-sys-color-inverse-on-surface: #f0f1f3;
+        }
+        .dark-theme {
+            --md-sys-color-primary: #4fd8d8;
+            --md-sys-color-on-primary: #003737;
+            --md-sys-color-primary-container: #004f4f;
+            --md-sys-color-on-primary-container: #6ff7f7;
+            --md-sys-color-secondary: #b1cbcb;
+            --md-sys-color-on-secondary: #1b3535;
+            --md-sys-color-surface: #121416;
+            --md-sys-color-on-surface: #e2e3e5;
+            --md-sys-color-surface-variant: #3f4949;
+            --md-sys-color-on-surface-variant: #c0c9c9;
+            --md-sys-color-outline: #8a9393;
+            --md-sys-color-shadow: #000000;
+            --md-sys-color-surface-tint: #4fd8d8;
+            --md-sys-color-inverse-surface: #e2e3e5;
+            --md-sys-color-inverse-on-surface: #1b1c1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            min-height: 100vh;
+            padding: 1.5rem 1rem;
+            display: flex;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .app {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 0.8rem;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .controls-bar {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .master-volume {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--md-sys-color-surface-variant);
+            padding: 0.4rem 1rem 0.4rem 1.2rem;
+            border-radius: 32px;
+        }
+
+        .master-volume label {
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .master-slider-container {
+            width: 120px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+        .master-slider-track {
+            width: 100%;
+            height: 10px;
+            background: var(--md-sys-color-outline);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .master-slider-fill {
+            height: 100%;
+            width: 50%;
+            background: var(--md-sys-color-primary);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        #masterVal {
+            min-width: 40px;
+            color: var(--md-sys-color-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        #startStopBtn {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+        }
+
+        .top-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        .upload-section {
+            background: var(--md-sys-color-surface-variant);
+            border-radius: var(--card-radius);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            width: 100%;
+        }
+        .upload-label {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+            color: var(--md-sys-color-primary);
+            background: var(--md-sys-color-surface);
+            padding: 0.4rem 1.2rem;
+            border-radius: 32px;
+            font-weight: 500;
+            align-self: flex-start;
+        }
+        #fileInput { display: none; }
+
+        .custom-controls {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .custom-controls.active {
+            display: flex;
+        }
+        #fileName {
+            color: var(--md-sys-color-on-surface-variant);
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+        .icon-btn {
+            background: var(--md-sys-color-surface);
+            border: none;
+            color: var(--md-sys-color-on-surface);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .icon-btn.active {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+        }
+        .custom-slider-container {
+            flex: 1;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            min-width: 80px;
+        }
+        .custom-slider-track {
+            width: 100%;
+            height: 10px;
+            background: var(--md-sys-color-outline);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .custom-slider-fill {
+            height: 100%;
+            width: 60%;
+            background: var(--md-sys-color-primary);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        .settings-section {
+            background: var(--md-sys-color-surface-variant);
+            border-radius: var(--card-radius);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+        .setting-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .setting-item label {
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 0.9rem;
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        .hex-wrapper {
+            flex: 1;
+            min-width: 120px;
+            display: flex;
+            align-items: center;
+            background: var(--md-sys-color-surface);
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: 20px;
+            padding: 0 0.5rem;
+        }
+        .hex-prefix {
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 1rem;
+            padding-right: 0.2rem;
+        }
+        #hexInput {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 0.5rem 0.5rem 0.5rem 0;
+            color: var(--md-sys-color-on-surface);
+            font-size: 0.9rem;
+            outline: none;
+            min-width: 60px;
+        }
+
+        #columnSelect, #themeSelect {
+            flex: 1;
+            min-width: 120px;
+            background: var(--md-sys-color-surface);
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            color: var(--md-sys-color-on-surface);
+            font-size: 0.9rem;
+            outline: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23717878' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.8rem center;
+            background-size: 16px;
+            padding-right: 2.5rem;
+        }
+
+        .log-btn {
+            background: var(--md-sys-color-surface);
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: 32px;
+            padding: 0.5rem 1.2rem;
+            color: var(--md-sys-color-on-surface);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            align-self: flex-end;
+            margin-top: 0.5rem;
+        }
+
+        .category-container {
+            background: var(--md-sys-color-surface-variant);
+            border-radius: var(--card-radius);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+        .category-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            width: 100%;
+        }
+        .category-btn {
+            flex: 1 0 auto;
+            min-width: fit-content;
+            background: var(--md-sys-color-surface);
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: 32px;
+            padding: 0.4rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--md-sys-color-on-surface-variant);
+            cursor: pointer;
+            transition: 0.1s;
+            text-align: center;
+        }
+        .category-btn.active {
+            background: var(--md-sys-color-primary);
+            border-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+        }
+
+        .grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 0.5rem;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .card {
+            background: var(--md-sys-color-surface-variant);
+            border-radius: var(--card-radius);
+            padding: 1rem 0.8rem 1rem 0.8rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            min-width: 0;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 6px;
+            border-radius: 0 4px 4px 0;
+            background-color: var(--card-color, var(--md-sys-color-primary));
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            padding-left: 10px;
+        }
+
+        .title-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .title-group span {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--md-sys-color-on-surface);
+            letter-spacing: 0.01em;
+            word-break: break-word;
+        }
+
+        .category-tag {
+            font-size: 0.7rem;
+            color: var(--md-sys-color-primary);
+            background: var(--md-sys-color-surface);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            align-self: flex-start;
+            margin-top: 0.2rem;
+            border: 1px solid var(--md-sys-color-outline);
+            word-break: break-word;
+            max-width: 100%;
+        }
+
+        .card-footer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 0.5rem;
+            padding-left: 10px;
+            margin-top: 0.2rem;
+            min-width: 0;
+        }
+
+        .play-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--md-sys-color-surface);
+            border: 2px solid var(--md-sys-color-outline);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 1rem;
+            transition: 0.1s;
+            flex-shrink: 0;
+        }
+
+        .play-btn.active {
+            background: var(--md-sys-color-primary);
+            border-color: var(--md-sys-color-primary);
+            color: white;
+        }
+
+        .slider-container {
+            flex: 1 1 120px;
+            min-width: 60px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            display: none;
+        }
+
+        .slider-container.active {
+            display: flex;
+        }
+
+        .slider-track {
+            width: 100%;
+            height: 10px;
+            background: var(--md-sys-color-outline);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--md-sys-color-primary);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        .log-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .log-modal.active {
+            display: flex;
+        }
+        .log-content {
+            background: var(--md-sys-color-surface);
+            border-radius: 28px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .log-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .log-header h3 {
+            color: var(--md-sys-color-on-surface);
+        }
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .log-list {
+            overflow-y: auto;
+            max-height: 60vh;
+            padding: 0.5rem;
+            background: var(--md-sys-color-surface-variant);
+            border-radius: 16px;
+        }
+        .log-item {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid var(--md-sys-color-outline);
+            font-size: 0.85rem;
+            color: var(--md-sys-color-on-surface);
+            word-break: break-word;
+        }
+        .log-item:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <div class="app">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>星光环境Sound</h1>
+            <div class="controls-bar">
+                <div class="master-volume">
+                    <label>主控</label>
+                    <div class="master-slider-container" id="masterSliderContainer">
+                        <div class="master-slider-track">
+                            <div class="master-slider-fill" id="masterFill" style="width:50%"></div>
+                        </div>
+                    </div>
+                    <span id="masterVal">50%</span>
+                </div>
+                <button id="startStopBtn">▶ 启动</button>
+            </div>
+        </div>
+
+        <!-- 上传与设置两列 -->
+        <div class="top-row">
+            <div class="upload-section">
+                <label class="upload-label" for="fileInput">
+                    <span>📁</span> 上传音频
+                </label>
+                <input type="file" id="fileInput" accept=".mp3,.wav,.flac,audio/mpeg,audio/wav,audio/flac">
+                <div class="custom-controls" id="customControls">
+                    <span id="fileName">未选择</span>
+                    <button class="icon-btn" id="playPauseCustom">▶️</button>
+                    <div class="custom-slider-container" id="customSliderContainer">
+                        <div class="custom-slider-track">
+                            <div class="custom-slider-fill" id="customFill" style="width:60%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="setting-item">
+                    <label>主题色</label>
+                    <div class="hex-wrapper">
+                        <span class="hex-prefix">#</span>
+                        <input type="text" id="hexInput" placeholder="006a6a" value="006a6a" maxlength="6">
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label>列数</label>
+                    <select id="columnSelect">
+                        <option value="1">1列</option>
+                        <option value="2" selected>2列</option>
+                        <option value="3">3列</option>
+                        <option value="4">4列</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label>主题</label>
+                    <select id="themeSelect">
+                        <option value="light" selected>浅色</option>
+                        <option value="dark">深色</option>
+                    </select>
+                </div>
+                <button class="log-btn" id="logBtn">📋 报错日志</button>
+            </div>
+        </div>
+
+        <!-- 分类导航卡片 -->
+        <div class="category-container">
+            <div id="categoryNav" class="category-nav"></div>
+        </div>
+
+        <!-- 音轨网格 -->
+        <div id="soundGrid" class="grid"></div>
+        <footer>目前仍处于测试版阶段，可能有非常多的漏洞，并且声音的准确性也不是很高</footer>
+
+        <!-- 日志模态框 -->
+        <div id="logModal" class="log-modal">
+            <div class="log-content">
+                <div class="log-header">
+                    <h3>操作日志</h3>
+                    <button class="close-btn" id="closeLogBtn">&times;</button>
+                </div>
+                <div class="log-list" id="logList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // 日志系统
+            const activityLog = [];
+            function logEvent(message, isError = false) {
+                const time = new Date().toLocaleTimeString('zh-CN', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                const entry = `[${time}] ${message}`;
+                activityLog.push(entry);
+                console.log(entry);
+            }
+
+            window.onerror = function(msg, url, line) {
+                logEvent(`[全局错误] ${msg} at line ${line}`, true);
+            };
+            window.addEventListener('unhandledrejection', function(e) {
+                logEvent(`[未处理Promise拒绝] ${e.reason}`, true);
+            });
+
+            // UI元素
+            const startStopBtn = document.getElementById('startStopBtn');
+            const masterSliderContainer = document.getElementById('masterSliderContainer');
+            const masterFill = document.getElementById('masterFill');
+            const masterVal = document.getElementById('masterVal');
+            const grid = document.getElementById('soundGrid');
+            const fileInput = document.getElementById('fileInput');
+            const fileNameSpan = document.getElementById('fileName');
+            const playPauseCustom = document.getElementById('playPauseCustom');
+            const customSliderContainer = document.getElementById('customSliderContainer');
+            const customFill = document.getElementById('customFill');
+            const customControls = document.getElementById('customControls');
+            const hexInput = document.getElementById('hexInput');
+            const columnSelect = document.getElementById('columnSelect');
+            const themeSelect = document.getElementById('themeSelect');
+            const categoryNav = document.getElementById('categoryNav');
+            const logBtn = document.getElementById('logBtn');
+            const logModal = document.getElementById('logModal');
+            const closeLogBtn = document.getElementById('closeLogBtn');
+            const logList = document.getElementById('logList');
+
+            themeSelect.addEventListener('change', (e) => {
+                const theme = e.target.value;
+                document.body.className = theme === 'light' ? 'light-theme' : 'dark-theme';
+                logEvent(`主题切换为: ${theme}`);
+            });
+
+            logBtn.addEventListener('click', () => {
+                logList.innerHTML = activityLog.map(msg => `<div class="log-item">${msg}</div>`).join('');
+                logModal.classList.add('active');
+            });
+            closeLogBtn.addEventListener('click', () => logModal.classList.remove('active'));
+            window.addEventListener('click', (e) => {
+                if (e.target === logModal) logModal.classList.remove('active');
+            });
+
+            // 音频上下文
+            let audioCtx = null;
+            let masterGain = null;
+            const activeSources = [];
+            const activeGains = [];
+            const activeFilters = [];
+            const volumes = [];
+            const isActive = [];
+
+            let customBuffer = null;
+            let customSource = null;
+            let customGain = null;
+            let customPlaying = false;
+            let customArrayBuffer = null;
+
+            // ---------- 512个手工命名声音 (与之前相同) ----------
+            const soundNames = [
+                "细雨微风", "暴雨倾盆", "海浪拍岸", "篝火噼啪", "森林晨雾", "山涧溪流", "风扇旋转", "空调外机",
+                "雷声滚滚", "远雷低吟", "瀑布轰鸣", "壁炉柴火", "沙漠风沙", "冰川融化", "宇宙静电", "火车轨道",
+                "咖啡厅人声", "办公室嗡嗡", "雪地行走", "落叶沙沙", "芦苇摇曳", "竹林风声", "潮汐涨落", "深海回响",
+                "温泉气泡", "钟表滴答", "键盘敲击", "打印机工作", "吸尘器运转", "吹风机热风", "洗衣机旋转", "烘干机翻滚",
+                "冰箱压缩机", "制冰机掉落", "空气净化器", "加湿器喷雾", "吊扇转动", "排气扇抽风", "油烟机轰鸣", "电钻冲击",
+                "电锯切割", "破碎锤敲击", "挖掘机履带", "搅拌机混合", "发电机供电", "引擎怠速", "摩托车咆哮", "赛车疾驰",
+                "轮胎摩擦", "刹车尖锐", "地铁进站", "地铁风噪", "火车站台", "飞机客舱", "直升机旋翼", "港口雾号",
+                "船舶引擎", "码头波浪", "雨打屋顶", "雨打窗户", "雨打铁皮", "雨打树叶", "雨打帐篷", "雨打水面",
+                "雨打泥土", "雨打石板", "雨打车身", "雨打船篷", "雨打芭蕉", "雨打荷叶", "雨打塑料", "雨打帆布",
+                "风吹电线", "风吹过峡谷", "风吹过山口", "风吹过隧道", "风吹过树林", "风吹过草地", "风吹过麦田", "风吹过沙丘",
+                "风吹过雪原", "风吹过冰缝", "风吹过烟囱", "风吹过门缝", "风吹过窗户", "风吹过旗帜", "风吹过塑料袋", "风吹过纸张",
+                "风吹过窗帘", "溪流过石", "溪流过木", "瀑布落潭", "瀑布落岩", "泉水涌出", "喷泉喷洒", "海浪拍礁",
+                "海浪拍沙", "海浪拍崖", "海浪拍码头", "潮水涌入", "河水弯流", "急流冲石", "跌水飞溅", "滴水入桶",
+                "滴水入玻璃", "滴水入金属", "滴水入塑料", "滴水入木", "滴水入石", "滴水入泥", "滴水入水", "炭火燃烧",
+                "煤火噼啪", "草火燎原", "落叶焚烧", "蜡烛微光", "油灯滋滋", "酒精灯焰", "燃气灶火", "焊接喷弧",
+                "熔炉沸腾", "高压电晕", "变压器嗡鸣", "霓虹灯镇流器", "荧光灯启辉", "电线嗡嗡", "静电嘶嘶", "收音机调频",
+                "电视雪花", "磁带底噪", "黑胶爆裂", "数字失真", "模拟反馈", "雷达扫描", "声纳脉冲", "超声波震荡",
+                "次声波振动", "白噪音机器", "粉红噪音", "棕色噪音", "蓝噪音", "紫噪音", "灰噪音", "高频白噪",
+                "中频白噪", "低频白噪", "明亮嘶嘶", "沙沙沙响", "嗡嗡低频", "隆隆雷鸣", "呼啸狂风", "噼啪火星",
+                "潺潺流水", "汩汩冒泡", "滴答漏水", "嗖嗖飞箭", "呼呼大风", "呜呜缠绕", "砰砰关门", "叮当碰撞",
+                "嘎吱摇晃", "咯吱踩雪", "沙沙脚步", "咚咚心跳", "哗哗雨声", "淅淅沥沥", "哗啦啦浪", "轰隆隆雷",
+                "窸窣树叶", "飒飒风声", "簌簌落叶", "淙淙溪流", "汹汹波涛", "涓涓细流", "滔滔江水", "滚滚洪流",
+                "阵阵海潮", "层层波浪", "微微涟漪", "巨大漩涡", "深渊寂静", "太空舱内", "宇宙射线", "太阳风粒子",
+                "磁层扰动", "极光爆发", "星云旋转", "黑洞吸积", "脉冲星信号", "星际介质", "银河旋臂", "彗星掠过",
+                "火星沙尘", "金星大气", "木星风暴", "土星环带", "冰卫星喷泉", "空间站循环", "火箭发射", "航天飞机再入",
+                "月球基地", "火星殖民地", "太空行走", "气闸舱泄压", "人工重力机", "冬眠舱嗡鸣", "医疗设备", "实验室仪器",
+                "服务器风扇", "数据中心冷却", "发电厂涡轮", "水电站泄洪", "核电站冷却塔", "风电场叶片", "太阳能逆变器", "变电站电晕",
+                "高压铁塔风噪", "工厂流水线", "机械臂运动", "气动工具", "液压机冲压", "冲床下料", "纺织机梭子", "印刷机滚轴",
+                "包装机封口", "码垛机堆叠", "仓库叉车", "货运卡车", "集装箱吊装", "铁路道口铃", "有轨电车", "缆车索道",
+                "摩天轮转动", "游乐场电气嗡鸣", "嘉年华人群", "集市嗡嗡", "商场背景", "超市收银", "图书馆翻书", "教室书写",
+                "会议室安静", "洞穴水滴", "钟乳石回声", "地下河暗流", "峡谷劲风", "悬崖落石", "山崩地裂", "雪崩倾泻",
+                "冰裂缝挤压", "冰川移动", "极地寒风", "苔原冻土", "沼泽冒泡", "泥浆地热", "间歇泉喷发", "硫磺泉嘶嘶",
+                "火山喷发", "熔岩蠕动", "岩浆湖翻滚", "火山灰沉降", "沙漠夜晚", "戈壁砾石", "沙丘移动", "旱地龟裂",
+                "绿洲水声", "泉眼无声", "高原缺氧", "山巅风声", "云层翻滚", "雾中灯塔", "雾角长鸣", "航标浮筒",
+                "港口起重机", "船坞抽水", "干船坞作业", "潜艇声纳", "水下通信", "深海热泉", "海底黑烟囱", "珊瑚水流",
+                "海草摆动", "海流涌动", "潮汐池气泡", "海滨悬崖", "礁石浪花", "卵石滚动", "沙滩微风", "海风轻拂",
+                "码头木桩", "桥下回声", "隧道行车", "地下通道", "人行横道", "红绿灯秒", "公交站牌", "候车亭雨",
+                "出租车待客", "机场摆渡车", "行李传送带", "登机桥对接", "货舱装卸", "飞机除冰", "跑道摩擦", "喷气式起飞",
+                "螺旋桨飞机", "滑翔机无声", "热气球燃烧器", "飞艇发动机", "降落伞打开", "跳伞风噪", "蹦极绳索", "过山车呼啸",
+                "迷宫踱步", "鬼屋阴风", "城堡大门", "地牢锁链", "王座大厅", "魔法水晶", "炼金术坩埚", "符文嗡鸣",
+                "传送门能量", "未来城市交通", "飞车掠过", "磁悬浮列车", "超级高铁", "太空电梯", "轨道炮充能", "激光切割",
+                "等离子弧", "全息投影", "机器人步伐", "赛博朋克街道", "霓虹灯闪烁", "广告牌电流", "黑客键盘", "数据流传输",
+                "服务器散热", "加密货币矿机", "虚拟现实环境", "游戏厅嘈杂", "弹珠台碰撞", "老虎机旋转", "轮盘赌球", "扑克牌洗牌",
+                "麻将牌碰撞", "围棋落子", "打字机敲击", "电报机滴答", "传真机扫描", "老式电话拨号", "调制解调器握手", "拨号上网",
+                "路由器散热", "交换机风扇", "硬盘读写", "光盘旋转", "磁带机加载", "胶片放映机", "投影仪风扇", "幻灯机切换",
+                "舞台幕布", "剧场静默", "音乐厅空场", "演播室空调", "导播台切换", "广播电台干扰", "对讲机呼叫", "无线电静默",
+                "摩尔斯电码", "卫星通讯", "深空网络", "射电望远镜", "天文台圆顶", "气象站风速计", "地震仪记录", "火山观测站",
+                "海洋浮标", "科考船实验室", "极地营地", "登山帐篷", "篝火晚会氛围", "露营炉头", "户外水壶烧开", "咖啡机萃取",
+                "意式浓缩", "蒸汽奶泡", "磨豆机研磨", "榨汁机运转", "搅拌机打碎", "食物料理机", "烤箱定时", "微波炉加热",
+                "冰箱开门", "制冰机落冰", "洗碗机喷淋", "水槽垃圾处理", "水龙头水流", "浴缸放水", "淋浴花洒", "蒸汽浴室",
+                "桑拿房泼水", "游泳池循环", "水疗中心气泡", "温泉蛋烹煮", "泥浆浴咕嘟", "盐屋微风", "冥想空间氛围", "瑜伽教室宁静",
+                "禅修堂寂静", "茶室水沸", "铁壶煮水", "竹制水勺", "庭院雨水", "枯山水耙纹", "石灯笼风", "和室纸门",
+                "榻榻米脚步", "寺庙风过", "神社寂静", "佛堂静谧", "清真寺空旷", "教堂安静", "教堂空灵回声", "森林清晨",
+                "黎明寂静", "黄昏微风", "夜间湿地", "午间热浪", "秋夜凉风", "森林木屋", "山中小屋", "海边别墅",
+                "沙漠旅馆", "雪地木屋", "冰屋内部", "树屋风声", "船屋摇曳", "房车内部", "帐篷风声", "吊床微晃",
+                "秋千嘎吱", "滑梯摩擦", "跷跷板吱呀", "沙坑沙沙", "公园长椅", "林间小径", "登山杖点地", "背包摩擦",
+                "水壶晃荡", "指南针摆动", "地图翻动", "望远镜调焦", "相机快门", "三脚架拧紧", "无人机螺旋桨", "航拍飞行器",
+                "风筝线拉紧", "气球漏气", "泡泡破裂", "烟花氛围", "噼啪静电", "营火氛围", "夜晚露营", "冬夜寂静",
+                "春雷第一声", "夏雨骤至", "秋风扫叶", "冬雪簌簌", "梅雨季节", "台风云图", "飓风眼内", "龙卷风过境",
+                "沙尘暴来袭", "暴风雪封门", "冰雹砸窗", "冻雨结枝", "雾凇沆砀", "霜降草地", "露水清晨", "彩虹消失",
+                "夕阳余晖", "月光皎洁", "星光闪烁", "极夜漫长", "极昼永明", "地磁暴动", "太阳耀斑", "日冕物质抛射",
+                "行星际磁场", "银河中心", "星团疏散", "超新星遗迹", "中子星双星", "引力波涟漪", "时空震颤", "量子涨落",
+                "真空零点能", "暗物质晕", "宇宙弦振动", "多重宇宙边界", "梦境边缘", "思绪飘渺", "冥想入定", "放松时刻",
+                "睡眠降临", "深度休息", "安宁氛围", "平和心境", "空灵之境", "虚无寂静", "白噪音之海", "粉红沙滩",
+                "棕色河流", "蓝色瀑布", "紫色风暴", "灰色天空", "高频闪烁", "中频舒适", "低频按摩", "全方位环绕",
+                "立体声场", "双耳节拍", "等时音调", "脑波同步", "冥想氛围", "休息术环境", "催眠氛围", "梦境般虚无",
+                "意识飘渺", "虚空氛围", "宇宙意识", "无限虚空", "存在本身", "此刻当下", "静谧间隙", "安宁停顿",
+                "体内嗡鸣", "生命氛围", "分子振动", "原子旋转", "量子泡沫", "普朗克时间", "奇点之前", "大爆炸回响",
+                "宇宙微波背景", "原始引力波", "暗能量流动", "膜宇宙碰撞", "循环宇宙收缩", "热寂之后", "永恒宁静"
+            ];
+            console.assert(soundNames.length === 512, '声音数量应为512');
+
+            // 分类函数：根据名称关键词判断分类（与之前相同）
+            function detectCategory(name) {
+                const kw = {
+                    '雨声': ['雨', '雷', '湿', '淅沥', '哗哗', '轰隆隆'],
+                    '水声': ['水', '海', '浪', '潮', '溪', '泉', '瀑', '滴', '流', '河', '江', '冰', '雪', '温泉', '喷泉', '水'],
+                    '火声': ['火', '篝', '烧', '炭', '烟', '焰', '熔', '燃', '柴', '壁炉', '焊接', '熔炉'],
+                    '风声': ['风', '气', '呼啸', '呼呼', '飓风', '龙卷风', '沙尘暴', '暴风雪'],
+                    '自然': ['树', '林', '叶', '草', '竹', '鸟', '虫', '蛙', '鹿', '鲸', '狼', '森林', '峡谷', '悬崖', '山', '苔原', '沼泽'],
+                    '机械': ['机', '械', '风扇', '空调', '引擎', '马达', '泵', '钻', '锯', '锤', '焊', '电', '变压器', '发电机', '服务器', '硬盘', '打印机', '吸尘器', '洗衣机', '冰箱', '压缩机', '制冰机', '净化器', '加湿器', '吊扇', '排气扇', '油烟机', '电钻', '电锯', '破碎锤', '挖掘机', '搅拌机', '发电机', '引擎', '摩托车', '赛车', '轮胎', '刹车', '地铁', '火车', '飞机', '直升机', '船舶', '航天', '火箭', '电梯', '缆车', '摩天轮', '机械臂', '冲床', '纺织机', '印刷机', '包装机', '码垛机', '叉车', '卡车', '集装箱', '铁路', '有轨电车', '路由器', '交换机', '风扇'],
+                    '城市': ['城市', '街道', '地铁', '火车站', '机场', '公交', '车站', '港口', '码头', '商场', '超市', '人群', '集市', '咖啡馆', '办公室', '教室', '会议室', '图书馆', '红绿灯', '广告牌'],
+                    '建筑': ['建筑', '房间', '门', '窗', '墙', '楼梯', '走廊', '电梯', '屋顶', '屋', '房', '大厅', '舞台', '剧场', '音乐厅', '演播室', '教堂', '寺庙', '神社', '佛堂', '清真寺'],
+                    '幻想': ['宇宙', '太空', '黑洞', '星', '射线', '磁', '引力', '量子', '暗物质', '暗能量', '脉冲星', '银河', '彗星', '火星', '金星', '木星', '土星', '外星', '飞船', '魔法', '水晶', '炼金', '符文', '传送门', '赛博朋克', '霓虹', '全息', '机器人', '虚拟现实', '多维', '时空', '引力波', '大爆炸', '奇点', '真空', '原子', '分子', '量子']
+                };
+                for (let [cat, keywords] of Object.entries(kw)) {
+                    for (let k of keywords) {
+                        if (name.includes(k)) return cat;
+                    }
+                }
+                return '氛围';
+            }
+
+            // 增强的音频参数生成：使每个声音更独特、更准确
+            function generateAudioParams(index) {
+                // 使用更复杂的种子
+                const seed = index * 7919 + 131071; // 质数混合
+                const rand = (min, max) => {
+                    const x = Math.sin(seed) * 10000;
+                    return min + (x - Math.floor(x)) * (max - min);
+                };
+
+                // 噪声类型：白、粉、棕，根据声音类别倾向
+                const typeRand = (seed * 23) % 100;
+                let type;
+                if (typeRand < 30) type = 'white';
+                else if (typeRand < 70) type = 'pink';
+                else type = 'brown';
+
+                // 滤波器数量 1-4 个，增加多样性
+                const numFilters = 1 + ((seed * 29) % 4);
+                const filters = [];
+                const filterTypes = ['lowpass', 'highpass', 'bandpass', 'notch', 'peaking', 'lowshelf', 'highshelf'];
+                for (let f = 0; f < numFilters; f++) {
+                    // 类型选择
+                    const fType = filterTypes[(seed + f * 37) % filterTypes.length];
+                    // 频率范围扩大，覆盖超低频到超高频
+                    const freq = 15 + ((seed * 41 + f * 53) % 18000);
+                    // Q值范围扩大
+                    const Q = 0.2 + ((seed + f * 61) % 98) / 20; // 0.2-5.1
+                    // 增益范围扩大
+                    const gain = -12 + ((seed * 71 + f * 83) % 25); // -12 ~ +12 dB
+                    filters.push({ type: fType, freq, Q, gain });
+                }
+                return { type, filters };
+            }
+
+            // 生成声音数据数组
+            const soundData = soundNames.map((name, idx) => {
+                const category = detectCategory(name);
+                const { type, filters } = generateAudioParams(idx);
+                return { name, category, type, filters };
+            });
+
+            const baseHues = soundData.map((_, i) => (i * 17) % 360);
+
+            // Web Worker 生成噪声
+            const workerBlob = new Blob([`
+                self.onmessage = function(e) {
+                    const { type, sampleRate, duration, index } = e.data;
+                    const bufferSize = sampleRate * duration;
+                    const data = new Float32Array(bufferSize);
+                    if (type === 'white') {
+                        for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+                    } else if (type === 'pink') {
+                        let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
+                        for (let i = 0; i < bufferSize; i++) {
+                            const w = Math.random()*2-1;
+                            b0 = 0.99886*b0 + w*0.0555179;
+                            b1 = 0.99332*b1 + w*0.0750759;
+                            b2 = 0.96900*b2 + w*0.1538520;
+                            b3 = 0.86650*b3 + w*0.3104856;
+                            b4 = 0.55000*b4 + w*0.5329522;
+                            b5 = -0.7616*b5 - w*0.0168980;
+                            const pink = b0+b1+b2+b3+b4+b5+b6 + w*0.5362;
+                            b6 = w*0.115926;
+                            data[i] = pink * 0.11;
+                        }
+                    } else { // brown
+                        let last = 0;
+                        for (let i = 0; i < bufferSize; i++) {
+                            const w = Math.random()*2-1;
+                            last = (last + (0.02 * w)) / 1.02;
+                            data[i] = last * 3;
+                        }
+                    }
+                    self.postMessage({ data: data.buffer, index }, [data.buffer]);
+                };
+            `], { type: 'application/javascript' });
+            const workerUrl = URL.createObjectURL(workerBlob);
+
+            function generateNoiseBuffer(ctx, type, duration = 10.0) {
+                return new Promise((resolve, reject) => {
+                    const worker = new Worker(workerUrl);
+                    worker.onmessage = (e) => {
+                        const float32Array = new Float32Array(e.data.data);
+                        const audioBuffer = ctx.createBuffer(1, float32Array.length, ctx.sampleRate);
+                        audioBuffer.copyToChannel(float32Array, 0);
+                        resolve(audioBuffer);
+                        worker.terminate();
+                    };
+                    worker.onerror = reject;
+                    worker.postMessage({ type, sampleRate: ctx.sampleRate, duration });
+                });
+            }
+
+            // 启动/停止引擎
+            async function startAudio() {
+                if (audioCtx) return;
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)({ latencyHint: 'playback' });
+                masterGain = audioCtx.createGain();
+                masterGain.gain.value = parseFloat(masterFill.style.width) / 100 || 0.5;
+                masterGain.connect(audioCtx.destination);
+                startStopBtn.textContent = '⏸️ 暂停';
+                logEvent('音频引擎启动');
+
+                if (customArrayBuffer && !customBuffer) {
+                    try {
+                        customBuffer = await audioCtx.decodeAudioData(customArrayBuffer.slice(0));
+                        logEvent('上传音频解码成功');
+                    } catch (err) {
+                        logEvent(`上传音频解码失败: ${err}`, true);
+                    }
+                }
+            }
+
+            async function stopAudio() {
+                if (!audioCtx) return;
+                for (let i = 0; i < activeSources.length; i++) {
+                    if (activeSources[i]) {
+                        try { activeSources[i].stop(); } catch {}
+                        activeSources[i] = null;
+                        activeGains[i] = null;
+                        activeFilters[i] = null;
+                        isActive[i] = false;
+                        const playBtn = document.querySelector(`.play-btn[data-index="${i}"]`);
+                        if (playBtn) {
+                            playBtn.classList.remove('active');
+                            playBtn.textContent = '▶️';
+                        }
+                        const sliderContainer = document.querySelector(`.slider-container[data-index="${i}"]`);
+                        if (sliderContainer) sliderContainer.classList.remove('active');
+                    }
+                }
+                if (customSource) {
+                    try { customSource.stop(); } catch {}
+                    customSource = null;
+                    customPlaying = false;
+                    playPauseCustom.innerHTML = '▶️';
+                    playPauseCustom.classList.remove('active');
+                }
+                await audioCtx.close();
+                audioCtx = null;
+                masterGain = null;
+                startStopBtn.textContent = '▶ 启动';
+                logEvent('音频引擎停止');
+            }
+
+            async function loadAndPlaySound(index) {
+                if (!audioCtx) {
+                    logEvent('尝试播放但引擎未启动', true);
+                    return;
+                }
+                if (isActive[index]) return;
+
+                const sound = soundData[index];
+                const volume = volumes[index] || 0.5;
+
+                try {
+                    logEvent(`加载声音: ${sound.name}`);
+                    const buffer = await generateNoiseBuffer(audioCtx, sound.type, 10.0);
+                    const source = audioCtx.createBufferSource();
+                    source.buffer = buffer;
+                    source.loop = true;
+
+                    let lastNode = source;
+                    const filters = [];
+                    if (sound.filters) {
+                        for (let f of sound.filters) {
+                            const filter = audioCtx.createBiquadFilter();
+                            filter.type = f.type;
+                            filter.frequency.value = f.freq || 1000;
+                            if (f.Q) filter.Q.value = f.Q;
+                            if (f.gain) filter.gain.value = f.gain;
+                            lastNode.connect(filter);
+                            lastNode = filter;
+                            filters.push(filter);
+                        }
+                    }
+
+                    const gainNode = audioCtx.createGain();
+                    gainNode.gain.value = volume;
+                    lastNode.connect(gainNode);
+                    gainNode.connect(masterGain);
+
+                    source.start(0);
+
+                    activeSources[index] = source;
+                    activeGains[index] = gainNode;
+                    activeFilters[index] = filters;
+                    isActive[index] = true;
+
+                    const playBtn = document.querySelector(`.play-btn[data-index="${index}"]`);
+                    const sliderContainer = document.querySelector(`.slider-container[data-index="${index}"]`);
+                    if (playBtn) {
+                        playBtn.classList.add('active');
+                        playBtn.textContent = '⏸️';
+                    }
+                    if (sliderContainer) {
+                        sliderContainer.classList.add('active');
+                        const fill = sliderContainer.querySelector('.slider-fill');
+                        fill.style.width = volume * 100 + '%';
+                    }
+                    logEvent(`声音启动: ${sound.name}`);
+                } catch (err) {
+                    logEvent(`加载声音失败 ${sound.name}: ${err}`, true);
+                }
+            }
+
+            function stopSound(index) {
+                if (!audioCtx || !isActive[index]) return;
+                try {
+                    if (activeSources[index]) {
+                        activeSources[index].stop();
+                        activeSources[index] = null;
+                    }
+                    activeGains[index] = null;
+                    activeFilters[index] = null;
+                    isActive[index] = false;
+                    const playBtn = document.querySelector(`.play-btn[data-index="${index}"]`);
+                    if (playBtn) {
+                        playBtn.classList.remove('active');
+                        playBtn.textContent = '▶️';
+                    }
+                    const sliderContainer = document.querySelector(`.slider-container[data-index="${index}"]`);
+                    if (sliderContainer) sliderContainer.classList.remove('active');
+                    logEvent(`关闭声音: ${soundData[index].name}`);
+                } catch (err) {
+                    logEvent(`关闭声音失败: ${err}`, true);
+                }
+            }
+
+            function togglePower(index) {
+                if (!audioCtx) {
+                    logEvent('请先启动引擎', true);
+                    return;
+                }
+                if (isActive[index]) {
+                    stopSound(index);
+                } else {
+                    loadAndPlaySound(index);
+                }
+            }
+
+            function setVolume(index, vol) {
+                volumes[index] = vol;
+                if (activeGains[index]) {
+                    activeGains[index].gain.setValueAtTime(vol, audioCtx.currentTime);
+                }
+            }
+
+            // 构建UI
+            function buildCategoryNav() {
+                const cats = [...new Set(soundData.map(item => item.category))].sort();
+                categoryNav.innerHTML = '<button class="category-btn active" data-category="all">全部</button>';
+                cats.forEach(cat => {
+                    const btn = document.createElement('button');
+                    btn.className = 'category-btn';
+                    btn.dataset.category = cat;
+                    btn.textContent = cat;
+                    categoryNav.appendChild(btn);
+                });
+
+                categoryNav.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        categoryNav.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        const selectedCat = btn.dataset.category;
+                        filterGrid(selectedCat);
+                        logEvent(`切换分类至: ${selectedCat}`);
+                    });
+                });
+            }
+
+            function filterGrid(category) {
+                const cards = document.querySelectorAll('.card');
+                cards.forEach((card, index) => {
+                    const itemCat = soundData[index].category;
+                    card.style.display = (category === 'all' || itemCat === category) ? '' : 'none';
+                });
+            }
+
+            function buildGrid() {
+                grid.innerHTML = '';
+                soundData.forEach((item, idx) => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    const hue = baseHues[idx];
+                    card.style.setProperty('--card-color', `hsl(${hue}, 80%, 55%)`);
+
+                    const header = document.createElement('div');
+                    header.className = 'card-header';
+                    header.innerHTML = `
+                        <div class="title-group">
+                            <span>${item.name}</span>
+                            <span class="category-tag">${item.category}</span>
+                        </div>
+                    `;
+
+                    const footer = document.createElement('div');
+                    footer.className = 'card-footer';
+
+                    const playBtn = document.createElement('div');
+                    playBtn.className = 'play-btn';
+                    playBtn.dataset.index = idx;
+                    playBtn.textContent = '▶️';
+                    playBtn.addEventListener('click', (e) => togglePower(idx));
+
+                    const sliderContainer = document.createElement('div');
+                    sliderContainer.className = 'slider-container';
+                    sliderContainer.dataset.index = idx;
+
+                    const track = document.createElement('div');
+                    track.className = 'slider-track';
+                    const fill = document.createElement('div');
+                    fill.className = 'slider-fill';
+                    track.appendChild(fill);
+                    sliderContainer.appendChild(track);
+
+                    footer.appendChild(playBtn);
+                    footer.appendChild(sliderContainer);
+
+                    card.appendChild(header);
+                    card.appendChild(footer);
+                    grid.appendChild(card);
+
+                    volumes[idx] = 0.5;
+                });
+
+                // 滑块拖动逻辑
+                let activeDragIndex = null;
+                let isDragging = false;
+
+                function startDrag(e, idx) {
+                    e.preventDefault();
+                    const container = document.querySelector(`.slider-container[data-index="${idx}"]`);
+                    if (!container || !container.classList.contains('active')) return;
+                    activeDragIndex = idx;
+                    isDragging = true;
+                    updateVolumeFromEvent(e, idx);
+                }
+
+                function updateVolumeFromEvent(e, idx) {
+                    const container = document.querySelector(`.slider-container[data-index="${idx}"]`);
+                    if (!container) return;
+                    const rect = container.querySelector('.slider-track').getBoundingClientRect();
+                    let clientX;
+                    if (e.type.startsWith('touch')) {
+                        clientX = e.touches[0].clientX;
+                    } else {
+                        clientX = e.clientX;
+                    }
+                    let x = clientX - rect.left;
+                    x = Math.max(0, Math.min(rect.width, x));
+                    const percent = x / rect.width;
+                    setVolume(idx, percent);
+                    const fill = container.querySelector('.slider-fill');
+                    fill.style.width = percent * 100 + '%';
+                }
+
+                function onDragMove(e) {
+                    if (!isDragging || activeDragIndex === null) return;
+                    e.preventDefault();
+                    updateVolumeFromEvent(e, activeDragIndex);
+                }
+
+                function onDragEnd(e) {
+                    if (isDragging) {
+                        isDragging = false;
+                        activeDragIndex = null;
+                    }
+                }
+
+                document.querySelectorAll('.slider-container').forEach(container => {
+                    container.addEventListener('mousedown', (e) => startDrag(e, container.dataset.index));
+                    container.addEventListener('touchstart', (e) => startDrag(e, container.dataset.index), { passive: false });
+                });
+
+                document.addEventListener('mousemove', onDragMove);
+                document.addEventListener('mouseup', onDragEnd);
+                document.addEventListener('touchmove', onDragMove, { passive: false });
+                document.addEventListener('touchend', onDragEnd);
+                document.addEventListener('touchcancel', onDragEnd);
+            }
+
+            // 主音量拖动
+            (function initMasterSlider() {
+                let isDraggingMaster = false;
+                masterSliderContainer.addEventListener('mousedown', startMasterDrag);
+                masterSliderContainer.addEventListener('touchstart', startMasterDrag, { passive: false });
+
+                function startMasterDrag(e) {
+                    e.preventDefault();
+                    isDraggingMaster = true;
+                    updateMasterVolume(e);
+                }
+
+                function updateMasterVolume(e) {
+                    const rect = masterSliderContainer.querySelector('.master-slider-track').getBoundingClientRect();
+                    let clientX;
+                    if (e.type.startsWith('touch')) {
+                        clientX = e.touches[0].clientX;
+                    } else {
+                        clientX = e.clientX;
+                    }
+                    let x = clientX - rect.left;
+                    x = Math.max(0, Math.min(rect.width, x));
+                    const percent = x / rect.width;
+                    masterFill.style.width = percent * 100 + '%';
+                    masterVal.textContent = Math.round(percent * 100) + '%';
+                    if (masterGain) {
+                        masterGain.gain.setValueAtTime(percent, audioCtx.currentTime);
+                    }
+                }
+
+                document.addEventListener('mousemove', (e) => {
+                    if (isDraggingMaster) {
+                        e.preventDefault();
+                        updateMasterVolume(e);
+                    }
+                });
+                document.addEventListener('touchmove', (e) => {
+                    if (isDraggingMaster) {
+                        e.preventDefault();
+                        updateMasterVolume(e);
+                    }
+                }, { passive: false });
+                document.addEventListener('mouseup', () => { isDraggingMaster = false; });
+                document.addEventListener('touchend', () => { isDraggingMaster = false; });
+                document.addEventListener('touchcancel', () => { isDraggingMaster = false; });
+            })();
+
+            // 自定义音量滑块
+            (function initCustomSlider() {
+                let isDraggingCustom = false;
+                customSliderContainer.addEventListener('mousedown', startCustomDrag);
+                customSliderContainer.addEventListener('touchstart', startCustomDrag, { passive: false });
+
+                function startCustomDrag(e) {
+                    e.preventDefault();
+                    isDraggingCustom = true;
+                    updateCustomVolume(e);
+                }
+
+                function updateCustomVolume(e) {
+                    const rect = customSliderContainer.querySelector('.custom-slider-track').getBoundingClientRect();
+                    let clientX;
+                    if (e.type.startsWith('touch')) {
+                        clientX = e.touches[0].clientX;
+                    } else {
+                        clientX = e.clientX;
+                    }
+                    let x = clientX - rect.left;
+                    x = Math.max(0, Math.min(rect.width, x));
+                    const percent = x / rect.width;
+                    customFill.style.width = percent * 100 + '%';
+                    if (customGain) {
+                        customGain.gain.setValueAtTime(percent, audioCtx.currentTime);
+                    }
+                }
+
+                document.addEventListener('mousemove', (e) => {
+                    if (isDraggingCustom) {
+                        e.preventDefault();
+                        updateCustomVolume(e);
+                    }
+                });
+                document.addEventListener('touchmove', (e) => {
+                    if (isDraggingCustom) {
+                        e.preventDefault();
+                        updateCustomVolume(e);
+                    }
+                }, { passive: false });
+                document.addEventListener('mouseup', () => { isDraggingCustom = false; });
+                document.addEventListener('touchend', () => { isDraggingCustom = false; });
+                document.addEventListener('touchcancel', () => { isDraggingCustom = false; });
+            })();
+
+            // 上传音频处理
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                fileNameSpan.textContent = file.name;
+                customControls.classList.add('active');
+                playPauseCustom.innerHTML = '▶️';
+                playPauseCustom.classList.remove('active');
+                if (customSource) {
+                    try { customSource.stop(); } catch {}
+                    customSource = null;
+                }
+                customPlaying = false;
+                customBuffer = null;
+                logEvent(`上传文件: ${file.name}`);
+
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    const arrayBuffer = ev.target.result;
+                    if (audioCtx) {
+                        audioCtx.decodeAudioData(arrayBuffer).then(buffer => {
+                            customBuffer = buffer;
+                            logEvent('上传音频解码成功');
+                        }).catch((err) => {
+                            alert('解码失败，请检查文件格式');
+                            logEvent(`解码错误: ${err}`, true);
+                        });
+                    } else {
+                        customArrayBuffer = arrayBuffer;
+                        logEvent('音频文件已缓存，启动引擎后将解码');
+                    }
+                };
+                reader.readAsArrayBuffer(file);
+            });
+
+            playPauseCustom.addEventListener('click', async () => {
+                if (!audioCtx) {
+                    alert('请先启动引擎');
+                    logEvent('播放失败: 引擎未启动', true);
+                    return;
+                }
+                if (!customBuffer && customArrayBuffer) {
+                    try {
+                        customBuffer = await audioCtx.decodeAudioData(customArrayBuffer.slice(0));
+                        logEvent('上传音频解码成功');
+                    } catch (err) {
+                        alert('解码失败');
+                        logEvent(`解码错误: ${err}`, true);
+                        return;
+                    }
+                }
+                if (!customBuffer) {
+                    alert('请先上传音频');
+                    logEvent('播放失败: 无音频', true);
+                    return;
+                }
+                if (customPlaying) {
+                    if (customSource) {
+                        customSource.stop();
+                        customSource = null;
+                    }
+                    customPlaying = false;
+                    playPauseCustom.innerHTML = '▶️';
+                    playPauseCustom.classList.remove('active');
+                    logEvent('暂停上传音频');
+                } else {
+                    if (customSource) {
+                        try { customSource.stop(); } catch {}
+                        customSource = null;
+                    }
+                    customSource = audioCtx.createBufferSource();
+                    customSource.buffer = customBuffer;
+                    customSource.loop = true;
+                    if (!customGain) {
+                        customGain = audioCtx.createGain();
+                        customGain.gain.value = parseFloat(customFill.style.width) / 100 || 0.6;
+                        customGain.connect(masterGain);
+                    }
+                    customSource.connect(customGain);
+                    customSource.start(0);
+                    customPlaying = true;
+                    playPauseCustom.innerHTML = '⏸️';
+                    playPauseCustom.classList.add('active');
+                    logEvent('播放上传音频');
+                }
+            });
+
+            // ---------- HEX输入框修复 ----------
+            // 实时输入时只允许十六进制字符，并限制长度
+            hexInput.addEventListener('input', (e) => {
+                let val = e.target.value.replace(/[^0-9a-fA-F]/g, '').slice(0, 6);
+                e.target.value = val;
+                // 不在此处应用颜色，只做输入限制
+            });
+
+            // 当输入框失去焦点或按下回车时应用颜色
+            function applyHexColor() {
+                let val = hexInput.value.trim();
+                if (val.length === 0) {
+                    val = '006a6a'; // 默认
+                } else if (val.length < 6) {
+                    // 不足6位补0
+                    val = val.padEnd(6, '0');
+                }
+                hexInput.value = val;
+                const fullHex = '#' + val;
+                document.documentElement.style.setProperty('--md-sys-color-primary', fullHex);
+                logEvent(`主题色更改为: ${fullHex}`);
+            }
+
+            hexInput.addEventListener('blur', applyHexColor);
+            hexInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    hexInput.blur(); // 触发blur事件
+                }
+            });
+
+            // 初始化
+            hexInput.value = '006a6a';
+            document.documentElement.style.setProperty('--md-sys-color-primary', '#006a6a');
+
+            columnSelect.addEventListener('change', (e) => {
+                const cols = e.target.value;
+                grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+                logEvent(`列数更改为: ${cols}`);
+            });
+
+            startStopBtn.addEventListener('click', () => {
+                if (audioCtx) {
+                    stopAudio();
+                } else {
+                    startAudio().catch((err) => {
+                        alert('请先与页面交互');
+                        logEvent(`启动失败: ${err}`, true);
+                    });
+                }
+            });
+
+            // 初始化
+            buildCategoryNav();
+            buildGrid();
+            logEvent('页面初始化完成');
+            window.addEventListener('beforeunload', () => { if (audioCtx) audioCtx.close(); });
+        })();
+    </script>
+</body>
+</html>
