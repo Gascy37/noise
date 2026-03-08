@@ -1570,34 +1570,44 @@
                 stopAnimationLoop();
             }
 
-            async function playSound(index) {
+            // 统一处理播放/暂停/继续
+            async function togglePlay(index) {
                 if (!audioCtx) {
                     logEvent('请先启动引擎', true);
                     return;
                 }
 
+                // 如果已经激活，则切换暂停/播放
                 if (isActive[index]) {
-                    try {
-                        if (activeSources[index]) {
-                            activeSources[index].stop();
-                            activeSources[index] = null;
+                    if (isPlaying[index]) {
+                        // 暂停
+                        if (activeGains[index]) {
+                            activeGains[index].gain.setValueAtTime(0, audioCtx.currentTime);
                         }
-                        activeGains[index] = null;
-                        activeFilters[index] = null;
-                        activeAnalysers[index] = null;
-                        activeDataArrays[index] = null;
-                        isActive[index] = false;
                         isPlaying[index] = false;
                         const playBtn = document.querySelector(`.play-btn[data-index="${index}"]`);
                         if (playBtn) {
                             playBtn.classList.remove('active');
                             playBtn.textContent = '▶️';
                         }
-                    } catch (err) {
-                        logEvent(`停止旧声音失败: ${err}`, true);
+                        logEvent(`暂停声音: ${soundData[index].name}`);
+                    } else {
+                        // 恢复播放
+                        if (activeGains[index]) {
+                            activeGains[index].gain.setValueAtTime(volumes[index], audioCtx.currentTime);
+                        }
+                        isPlaying[index] = true;
+                        const playBtn = document.querySelector(`.play-btn[data-index="${index}"]`);
+                        if (playBtn) {
+                            playBtn.classList.add('active');
+                            playBtn.textContent = '⏸️';
+                        }
+                        logEvent(`继续声音: ${soundData[index].name}`);
                     }
+                    return;
                 }
 
+                // 否则首次加载并播放
                 const sound = soundData[index];
                 const volume = volumes[index] || 0.5;
 
@@ -1623,6 +1633,7 @@
                         }
                     }
 
+                    // 创建 Analyser
                     const analyser = audioCtx.createAnalyser();
                     analyser.fftSize = 32;
                     const dataArray = new Uint8Array(analyser.frequencyBinCount);
@@ -1672,7 +1683,7 @@
 
             // 分类与频段过滤
             let currentCategory = 'all';
-            let currentBand = null; // 新增频段筛选，null表示全部
+            let currentBand = null;
 
             function applyFilters() {
                 const cards = document.querySelectorAll('.card');
@@ -1742,7 +1753,7 @@
                             currentBand = null;
                         } else if (btn.dataset.band !== undefined) {
                             currentBand = btn.dataset.band;
-                            currentCategory = 'all'; // 频段筛选时忽略分类
+                            currentCategory = 'all';
                         }
                         applyFilters();
                         logEvent(`切换筛选: ${btn.textContent}`);
@@ -1797,7 +1808,7 @@
                     playBtn.textContent = '▶️';
                     playBtn.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        playSound(idx);
+                        togglePlay(idx);
                     });
 
                     const foldBtn = document.createElement('div');
