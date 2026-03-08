@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>星光环境Sound</title>
+    <title>星光环境Sound_512种氛围音</title>
     <style>
         /* ===== 全局变量 ===== */
         :root {
@@ -12,284 +12,38 @@
             --font-sans: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
         }
 
-        /* 浅色主题 (默认) - 优化 */
+        /* 浅色主题 (默认) */
         .light-theme {
-            --bg-primary: #f5f7fa;
+            --bg-primary: #f5f5f5;
             --bg-surface: #ffffff;
-            --bg-surface-hover: #f0f2f5;
-            --bg-surface-variant: #e8eaed;
-            --text-primary: #1e2b3c;
-            --text-secondary: #5a6b7c;
-            --border-color: #d0d7e0;
-            --outline-color: #a0a8b8;
+            --bg-surface-hover: #f0f0f0;
+            --bg-surface-variant: #e8e8e8;
+            --text-primary: #1e1e1e;
+            --text-secondary: #5e5e5e;
+            --border-color: #d0d0d0;
+            --outline-color: #a0a0a0;
             --primary-color: #006a6a;
             --primary-on: #ffffff;
             --primary-container: #d0f0f0;
-            --shadow-color: rgba(0,0,0,0.08);
+            --shadow-color: rgba(0,0,0,0.1);
         }
 
-        /* 深色主题 - 优化 */
+        /* 深色主题 */
         .dark-theme {
-            --bg-primary: #121417;
-            --bg-surface: #1e2329;
-            --bg-surface-hover: #2a2f36;
-            --bg-surface-variant: #2a2f36;
-            --text-primary: #e0e6ed;
-            --text-secondary: #a0b0c0;
-            --border-color: #333a44;
-            --outline-color: #555e68;
+            --bg-primary: #121212;
+            --bg-surface: #1e1e1e;
+            --bg-surface-hover: #2a2a2a;
+            --bg-surface-variant: #2a2a2a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-color: #333333;
+            --outline-color: #555555;
             --primary-color: #4fd8d8;
-            --primary-on: #121417;
-            --primary-container: #1f4f4f;
+            --primary-on: #121212;
+            --primary-container: #003737;
             --shadow-color: rgba(0,0,0,0.5);
         }
 
-        /* 固态玻璃浅 - 优化玻璃质感 */
-        .glass-light-theme {
-            --bg-primary: rgba(230, 240, 250, 0.4);
-            --bg-surface: rgba(255, 255, 255, 0.25);
-            --bg-surface-hover: rgba(255, 255, 255, 0.45);
-            --bg-surface-variant: rgba(240, 245, 250, 0.35);
-            --text-primary: #1a2a3a;
-            --text-secondary: #2a4055;
-            --border-color: rgba(255, 255, 255, 0.7);
-            --outline-color: rgba(160, 180, 200, 0.7);
-            --primary-color: #2f8f8f;
-            --primary-on: #ffffff;
-            --primary-container: rgba(47, 143, 143, 0.3);
-            --shadow-color: rgba(30, 60, 80, 0.2);
-        }
-        .glass-light-theme body {
-            background: linear-gradient(145deg, #d9e6f2, #b8d0e0);
-            backdrop-filter: blur(20px);
-        }
-        .glass-light-theme .card,
-        .glass-light-theme .category-container,
-        .glass-light-theme .upload-section,
-        .glass-light-theme .settings-section,
-        .glass-light-theme .search-container {
-            backdrop-filter: blur(25px);
-            background: linear-gradient(145deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
-            border: 1px solid rgba(255,255,255,0.6);
-            box-shadow: 0 15px 35px 0 rgba(40, 60, 80, 0.2), inset 0 1px 3px rgba(255,255,255,0.8);
-            position: relative;
-            overflow: hidden;
-        }
-        .glass-light-theme .card::after,
-        .glass-light-theme .category-container::after,
-        .glass-light-theme .upload-section::after,
-        .glass-light-theme .settings-section::after,
-        .glass-light-theme .search-container::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 60%);
-            opacity: 0.6;
-            pointer-events: none;
-        }
-        .glass-light-theme .play-btn,
-        .glass-light-theme .fold-btn,
-        .glass-light-theme .icon-btn {
-            background: rgba(255,255,255,0.4);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.6);
-        }
-
-        /* 固态玻璃深 - 优化玻璃质感 */
-        .glass-dark-theme {
-            --bg-primary: rgba(10, 20, 30, 0.6);
-            --bg-surface: rgba(20, 30, 40, 0.4);
-            --bg-surface-hover: rgba(40, 50, 60, 0.6);
-            --bg-surface-variant: rgba(30, 40, 50, 0.5);
-            --text-primary: #e0f0ff;
-            --text-secondary: #b0c8e0;
-            --border-color: rgba(255, 255, 255, 0.25);
-            --outline-color: rgba(180, 200, 220, 0.6);
-            --primary-color: #5fb0b8;
-            --primary-on: #ffffff;
-            --primary-container: rgba(95, 176, 184, 0.3);
-            --shadow-color: rgba(0,0,0,0.5);
-        }
-        .glass-dark-theme body {
-            background: linear-gradient(145deg, #1a2630, #0f1820);
-            backdrop-filter: blur(20px);
-        }
-        .glass-dark-theme .card,
-        .glass-dark-theme .category-container,
-        .glass-dark-theme .upload-section,
-        .glass-dark-theme .settings-section,
-        .glass-dark-theme .search-container {
-            backdrop-filter: blur(25px);
-            background: linear-gradient(145deg, rgba(40,55,70,0.4), rgba(20,30,40,0.3));
-            border: 1px solid rgba(255,255,255,0.15);
-            box-shadow: 0 15px 35px 0 rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        .glass-dark-theme .card::after,
-        .glass-dark-theme .category-container::after,
-        .glass-dark-theme .upload-section::after,
-        .glass-dark-theme .settings-section::after,
-        .glass-dark-theme .search-container::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 70%);
-            opacity: 0.4;
-            pointer-events: none;
-        }
-        .glass-dark-theme .play-btn,
-        .glass-dark-theme .fold-btn,
-        .glass-dark-theme .icon-btn {
-            background: rgba(30,45,60,0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        /* 赛博朋克主题 - 增强红/紫动态效果 */
-        .cyber-theme {
-            --bg-primary: #0d020a;
-            --bg-surface: #1f0c1a;
-            --bg-surface-hover: #2f1a2a;
-            --bg-surface-variant: #2a1522;
-            --text-primary: #ffe0f0;
-            --text-secondary: #ffa0c0;
-            --border-color: #ff0080;
-            --outline-color: #ff40a0;
-            --primary-color: #ff0066;
-            --primary-on: #000000;
-            --primary-container: rgba(255, 0, 102, 0.3);
-            --shadow-color: rgba(255, 0, 102, 0.6);
-        }
-        .cyber-theme body {
-            background: linear-gradient(45deg, #1a0020, #2a0010);
-            animation: cyber-bg-pulse 8s infinite alternate;
-        }
-        @keyframes cyber-bg-pulse {
-            0% { background: #1a001a; filter: hue-rotate(0deg); }
-            50% { background: #2a0018; filter: hue-rotate(5deg); }
-            100% { background: #1a001a; filter: hue-rotate(0deg); }
-        }
-        .cyber-theme .card {
-            border: 2px solid #ff0066;
-            box-shadow: 0 0 20px #ff0066, 0 0 40px rgba(255,0,102,0.4);
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(3px);
-            animation: cyber-border-flicker 4s infinite;
-        }
-        @keyframes cyber-border-flicker {
-            0% { border-color: #ff0066; box-shadow: 0 0 20px #ff0066; }
-            25% { border-color: #ff00a0; box-shadow: 0 0 30px #ff00a0; }
-            50% { border-color: #ff0080; box-shadow: 0 0 25px #ff0080; }
-            75% { border-color: #ff40c0; box-shadow: 0 0 35px #ff40c0; }
-            100% { border-color: #ff0066; box-shadow: 0 0 20px #ff0066; }
-        }
-        .cyber-theme .card::before {
-            background: linear-gradient(180deg, #ff0066, #ff40a0);
-            width: 4px;
-            animation: cyber-glow-pulse 2s infinite;
-        }
-        @keyframes cyber-glow-pulse {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; filter: brightness(1.3); }
-            100% { opacity: 0.8; }
-        }
-        .cyber-theme .category-btn {
-            border: 1px solid #ff0066;
-            color: #ffc0d0;
-            text-shadow: 0 0 5px #ff0066;
-            background: rgba(255,0,102,0.1);
-            transition: all 0.2s;
-        }
-        .cyber-theme .category-btn:hover {
-            background: rgba(255,0,102,0.3);
-            border-color: #ff00cc;
-            color: #fff;
-            box-shadow: 0 0 15px #ff00cc;
-        }
-        .cyber-theme .category-btn.active {
-            background: #ff0066;
-            color: #000;
-            border-color: #ff40c0;
-            box-shadow: 0 0 20px #ff0066, 0 0 40px #ff40c0;
-            animation: cyber-btn-pulse 1s infinite alternate;
-        }
-        @keyframes cyber-btn-pulse {
-            from { box-shadow: 0 0 10px #ff0066; }
-            to { box-shadow: 0 0 25px #ff40c0; }
-        }
-        .cyber-theme .play-btn,
-        .cyber-theme .fold-btn,
-        .cyber-theme .icon-btn {
-            border-color: #ff0066;
-            color: #ffa0c0;
-            background: rgba(0,0,0,0.6);
-        }
-        .cyber-theme .play-btn.active,
-        .cyber-theme .icon-btn.active {
-            background: #ff0066;
-            color: #000;
-            border-color: #ff40c0;
-            box-shadow: 0 0 20px #ff0066;
-        }
-        .cyber-theme .slider-fill {
-            background: linear-gradient(90deg, #ff0066, #ff40a0);
-        }
-        .cyber-theme .spectrum-bar[style*="var(--primary-color)"] {
-            background: #ff0066 !important;
-            box-shadow: 0 0 8px #ff0066;
-            animation: cyber-bar-twitch 0.2s infinite;
-        }
-        @keyframes cyber-bar-twitch {
-            0% { opacity: 0.8; transform: scaleY(1); }
-            50% { opacity: 1; transform: scaleY(1.15); }
-            100% { opacity: 0.8; transform: scaleY(1); }
-        }
-        .cyber-theme .title-group span {
-            text-shadow: 0 0 5px #ff0066, 0 0 10px #ff40a0;
-            animation: cyber-text-glitch 6s infinite;
-        }
-        @keyframes cyber-text-glitch {
-            0% { transform: skew(0deg); opacity:1; }
-            2% { transform: skew(2deg); opacity:0.9; text-shadow: 3px 0 0 #ff40a0, -3px 0 0 #ff0066; }
-            4% { transform: skew(0deg); opacity:1; }
-            96% { transform: skew(0deg); opacity:1; }
-            98% { transform: skew(-2deg); opacity:0.9; text-shadow: -3px 0 0 #ff40a0, 3px 0 0 #ff0066; }
-            100% { transform: skew(0deg); opacity:1; }
-        }
-        .cyber-theme .category-tag {
-            border-color: #ff40a0;
-            color: #ffb0c0;
-            background: rgba(255,64,160,0.2);
-        }
-        .cyber-theme .log-btn,
-        .cyber-theme .upload-label {
-            background: #ff0066;
-            color: #000;
-            box-shadow: 0 0 15px #ff0066, 0 0 30px #ff40a0;
-            animation: cyber-btn-pulse 1s infinite alternate;
-        }
-        .cyber-theme .log-btn:hover,
-        .cyber-theme .upload-label:hover {
-            filter: brightness(1.2);
-        }
-        .cyber-theme .search-container input {
-            background: rgba(255,0,102,0.1);
-            border-color: #ff0066;
-            color: #ffe0f0;
-        }
-        .cyber-theme .search-container input:focus {
-            border-color: #ff40c0;
-            box-shadow: 0 0 15px #ff40c0;
-        }
-
-        /* 全局样式 */
         * {
             margin: 0;
             padding: 0;
@@ -304,7 +58,7 @@
             padding: 1.5rem 1rem;
             display: flex;
             justify-content: center;
-            transition: background 0.3s ease;
+            transition: background 0.2s;
         }
 
         .app {
@@ -392,15 +146,10 @@
             font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: filter 0.2s, opacity 0.2s;
+            transition: filter 0.2s;
         }
         #startStopBtn:hover {
             filter: brightness(1.1);
-        }
-        #startStopBtn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            filter: none;
         }
 
         /* 上传与设置两列 */
@@ -541,7 +290,6 @@
             border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 0 0.5rem;
-            transition: var(--transition-default);
         }
         .hex-wrapper:focus-within {
             border-color: var(--primary-color);
@@ -560,10 +308,6 @@
             font-size: 0.9rem;
             outline: none;
         }
-        #hexInput:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
         .hex-confirm-btn {
             width: 36px;
             height: 36px;
@@ -580,11 +324,6 @@
         }
         .hex-confirm-btn:hover {
             filter: brightness(1.1);
-        }
-        .hex-confirm-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            filter: none;
         }
 
         #columnSelect, #themeSelect {
@@ -656,18 +395,18 @@
             filter: brightness(1.1);
         }
 
-        /* 分类导航容器 - 用于滑动高亮 */
-        .category-nav-container {
-            position: relative;
-            width: 100%;
+        /* 分类导航 */
+        .category-container {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--card-radius);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
         }
         .category-nav {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            width: 100%;
-            position: relative;
-            z-index: 2;
         }
         .category-btn {
             background: var(--bg-surface);
@@ -678,71 +417,18 @@
             font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
-            transition: color 0.2s, border-color 0.2s;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
             text-align: center;
-            position: relative;
-            z-index: 2;
-            background: transparent; /* 让背景透出滑动块 */
         }
         .category-btn:hover {
             background: var(--primary-container);
             border-color: var(--primary-color);
             color: var(--text-primary);
         }
-        /* 滑动高亮背景 - 动画速度减为0.5s */
-        .category-slider {
-            position: absolute;
+        .category-btn.active {
             background: var(--primary-color);
-            border-radius: 30px;
-            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.1);
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.8;
-        }
-
-        /* 搜索框 - 增加上方间距 */
-        .search-container {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: var(--card-radius);
-            padding: 0.8rem 1rem;
-            margin-top: 1.5rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .search-icon {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-        }
-        #searchInput {
-            flex: 1;
-            background: var(--bg-surface-variant);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 0.5rem 1rem;
-            color: var(--text-primary);
-            font-size: 0.95rem;
-            outline: none;
-        }
-        #searchInput:focus {
             border-color: var(--primary-color);
-        }
-        .clear-search {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 0 0.5rem;
-            display: none;
-        }
-        .clear-search:hover {
-            color: var(--primary-color);
-        }
-        .search-container.has-text .clear-search {
-            display: inline-block;
+            color: var(--primary-on);
         }
 
         /* 网格 */
@@ -921,7 +607,7 @@
             will-change: height;
         }
 
-        /* 日志模态框 - 过渡动画 */
+        /* 日志模态框 */
         .log-modal {
             display: none;
             position: fixed;
@@ -933,12 +619,9 @@
             z-index: 1000;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.2s ease;
         }
         .log-modal.active {
             display: flex;
-            opacity: 1;
         }
         .log-content {
             background: var(--bg-surface);
@@ -951,11 +634,6 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            transform: scale(0.9);
-            transition: transform 0.2s ease;
-        }
-        .log-modal.active .log-content {
-            transform: scale(1);
         }
         .log-header {
             display: flex;
@@ -1063,9 +741,6 @@
                     <select id="themeSelect">
                         <option value="light" selected>浅色</option>
                         <option value="dark">深色</option>
-                        <option value="glass-light">固态玻璃浅</option>
-                        <option value="glass-dark">固态玻璃深</option>
-                        <option value="cyber">赛博朋克</option>
                     </select>
                 </div>
                 <!-- 卡片颜色同步开关 -->
@@ -1082,19 +757,9 @@
             </div>
         </div>
 
-        <!-- 分类导航卡片（带滑动高亮） -->
+        <!-- 分类导航卡片 -->
         <div class="category-container">
-            <div class="category-nav-container">
-                <div id="categoryNav" class="category-nav"></div>
-                <div id="categorySlider" class="category-slider"></div>
-            </div>
-        </div>
-
-        <!-- 搜索框 -->
-        <div class="search-container" id="searchContainer">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" placeholder="搜索声音名称...">
-            <button class="clear-search" id="clearSearchBtn" aria-label="清除">✕</button>
+            <div id="categoryNav" class="category-nav"></div>
         </div>
 
         <!-- 音轨网格 -->
@@ -1148,18 +813,12 @@
             const columnSelect = document.getElementById('columnSelect');
             const themeSelect = document.getElementById('themeSelect');
             const categoryNav = document.getElementById('categoryNav');
-            const categorySlider = document.getElementById('categorySlider');
             const logBtn = document.getElementById('logBtn');
             const logModal = document.getElementById('logModal');
             const closeLogBtn = document.getElementById('closeLogBtn');
             const logList = document.getElementById('logList');
             const cardColorCheckbox = document.getElementById('cardColorSyncCheckbox');
             const cardColorToggle = document.getElementById('cardColorToggle');
-
-            // 新增搜索元素
-            const searchInput = document.getElementById('searchInput');
-            const clearSearchBtn = document.getElementById('clearSearchBtn');
-            const searchContainer = document.getElementById('searchContainer');
 
             // 本地存储
             const STORAGE_KEY = 'soundMixerSettings';
@@ -1178,7 +837,7 @@
                         }
                         if (settings.theme) {
                             themeSelect.value = settings.theme;
-                            applyTheme(settings.theme);
+                            document.body.className = settings.theme === 'light' ? 'light-theme' : 'dark-theme';
                         }
                         if (settings.cardColorSync !== undefined) {
                             cardColorCheckbox.checked = settings.cardColorSync;
@@ -1208,35 +867,9 @@
                 }
             }
 
-            // 应用主题，同时控制HEX是否可用
-            function applyTheme(theme) {
-                let className = '';
-                switch (theme) {
-                    case 'light': className = 'light-theme'; break;
-                    case 'dark': className = 'dark-theme'; break;
-                    case 'glass-light': className = 'glass-light-theme'; break;
-                    case 'glass-dark': className = 'glass-dark-theme'; break;
-                    case 'cyber': className = 'cyber-theme'; break;
-                    default: className = 'light-theme';
-                }
-                document.body.className = className;
-
-                // 赛博朋克主题下禁用HEX
-                const isCyber = theme === 'cyber';
-                hexInput.disabled = isCyber;
-                hexConfirmBtn.disabled = isCyber;
-                if (isCyber) {
-                    hexInput.style.opacity = '0.5';
-                    hexConfirmBtn.style.opacity = '0.5';
-                } else {
-                    hexInput.style.opacity = '';
-                    hexConfirmBtn.style.opacity = '';
-                }
-            }
-
             themeSelect.addEventListener('change', (e) => {
                 const theme = e.target.value;
-                applyTheme(theme);
+                document.body.className = theme === 'light' ? 'light-theme' : 'dark-theme';
                 logEvent(`主题切换为: ${theme}`);
                 saveSettings();
             });
@@ -1256,12 +889,12 @@
             const activeSources = [];
             const activeGains = [];
             const activeFilters = [];
-            const activeAnalysers = [];
-            const activeDataArrays = [];
+            const activeAnalysers = [];      // 存储 AnalyserNode
+            const activeDataArrays = [];      // 存储 Uint8Array 数据
             const volumes = [];
             const isActive = [];
-            const isPlaying = [];
 
+            // 存储每个卡片的频谱条元素
             const spectrumBars = [];
 
             let customBuffer = null;
@@ -1270,10 +903,12 @@
             let customPlaying = false;
             let customArrayBuffer = null;
 
+            // 动画循环控制
             let animFrame = null;
             function startAnimationLoop() {
                 if (animFrame) return;
                 function loop() {
+                    // 更新所有活跃音轨的频谱
                     for (let i = 0; i < activeAnalysers.length; i++) {
                         if (!activeAnalysers[i]) continue;
                         const analyser = activeAnalysers[i];
@@ -1281,7 +916,7 @@
                         const bars = spectrumBars[i];
                         if (!bars) continue;
 
-                        const active = isPlaying[i] && volumes[i] > 0;
+                        const active = isActive[i] && volumes[i] > 0;
                         if (active) {
                             analyser.getByteFrequencyData(dataArray);
                             const barCount = bars.length;
@@ -1292,11 +927,13 @@
                                     sum += dataArray[j * binSize + k] || 0;
                                 }
                                 const avg = sum / binSize;
+                                // 映射高度 4-28px
                                 const height = 4 + (avg / 255) * 24;
                                 bars[j].style.height = height + 'px';
                                 bars[j].style.backgroundColor = 'var(--primary-color)';
                             }
                         } else {
+                            // 不活跃或音量为0：灰色，高度保持原样（不更新高度）
                             for (let j = 0; j < bars.length; j++) {
                                 bars[j].style.backgroundColor = 'var(--outline-color)';
                             }
@@ -1314,7 +951,7 @@
                 }
             }
 
-            // ---------- 512个手工命名声音 + 频段计算 ----------
+            // ---------- 512个手工命名声音 ----------
             const soundNames = [
                 "细雨微风", "暴雨倾盆", "海浪拍岸", "篝火噼啪", "森林晨雾", "山涧溪流", "风扇旋转", "空调外机",
                 "雷声滚滚", "远雷低吟", "瀑布轰鸣", "壁炉柴火", "沙漠风沙", "冰川融化", "宇宙静电", "火车轨道",
@@ -1408,7 +1045,6 @@
                 return '氛围';
             }
 
-            // 优化声音参数，并计算频段
             function generateAudioParams(index) {
                 const seed = index * 7919 + 131071;
                 const rand = (min, max) => {
@@ -1417,39 +1053,26 @@
                 };
                 const typeRand = (seed * 23) % 100;
                 let type;
-                if (typeRand < 20) type = 'white';
-                else if (typeRand < 60) type = 'pink';
+                if (typeRand < 30) type = 'white';
+                else if (typeRand < 70) type = 'pink';
                 else type = 'brown';
-                const numFilters = 1 + ((seed * 29) % 3);
+                const numFilters = 1 + ((seed * 29) % 4);
                 const filters = [];
                 const filterTypes = ['lowpass', 'highpass', 'bandpass', 'notch', 'peaking', 'lowshelf', 'highshelf'];
                 for (let f = 0; f < numFilters; f++) {
                     const fType = filterTypes[(seed + f * 37) % filterTypes.length];
-                    let freq;
-                    if (fType === 'lowpass' || fType === 'lowshelf') {
-                        freq = 80 + ((seed * 41 + f * 53) % 1000);
-                    } else if (fType === 'highpass' || fType === 'highshelf') {
-                        freq = 2000 + ((seed * 41 + f * 53) % 3000);
-                    } else {
-                        freq = 100 + ((seed * 41 + f * 53) % 2000);
-                    }
-                    const Q = 0.5 + ((seed + f * 61) % 48) / 20;
-                    const gain = -6 + ((seed * 71 + f * 83) % 13);
+                    const freq = 15 + ((seed * 41 + f * 53) % 18000);
+                    const Q = 0.2 + ((seed + f * 61) % 98) / 20;
+                    const gain = -12 + ((seed * 71 + f * 83) % 25);
                     filters.push({ type: fType, freq, Q, gain });
                 }
-                // 计算频段（取所有滤波器频率的平均值）
-                const avgFreq = filters.reduce((sum, f) => sum + f.freq, 0) / filters.length;
-                let band;
-                if (avgFreq < 200) band = '低频';
-                else if (avgFreq < 2000) band = '中频';
-                else band = '高频';
-                return { type, filters, band };
+                return { type, filters };
             }
 
             const soundData = soundNames.map((name, idx) => {
                 const category = detectCategory(name);
-                const { type, filters, band } = generateAudioParams(idx);
-                return { name, category, type, filters, band };
+                const { type, filters } = generateAudioParams(idx);
+                return { name, category, type, filters };
             });
 
             const baseHues = soundData.map((_, i) => (i * 17) % 360);
@@ -1505,36 +1128,27 @@
 
             async function startAudio() {
                 if (audioCtx) return;
-                startStopBtn.disabled = true;
-                startStopBtn.textContent = '加载中…';
-                try {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)({ latencyHint: 'playback' });
-                    masterGain = audioCtx.createGain();
-                    masterGain.gain.value = parseFloat(masterFill.style.width) / 100 || 0.5;
-                    masterGain.connect(audioCtx.destination);
-                    startStopBtn.textContent = '⏸️ 暂停';
-                    logEvent('音频引擎启动');
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)({ latencyHint: 'playback' });
+                masterGain = audioCtx.createGain();
+                masterGain.gain.value = parseFloat(masterFill.style.width) / 100 || 0.5;
+                masterGain.connect(audioCtx.destination);
+                startStopBtn.textContent = '⏸️ 暂停';
+                logEvent('音频引擎启动');
 
-                    if (customArrayBuffer && !customBuffer) {
-                        try {
-                            customBuffer = await audioCtx.decodeAudioData(customArrayBuffer.slice(0));
-                            logEvent('上传音频解码成功');
-                        } catch (err) {
-                            logEvent(`上传音频解码失败: ${err}`, true);
-                        }
+                if (customArrayBuffer && !customBuffer) {
+                    try {
+                        customBuffer = await audioCtx.decodeAudioData(customArrayBuffer.slice(0));
+                        logEvent('上传音频解码成功');
+                    } catch (err) {
+                        logEvent(`上传音频解码失败: ${err}`, true);
                     }
-                    startAnimationLoop();
-                } catch (err) {
-                    logEvent(`启动失败: ${err}`, true);
-                } finally {
-                    startStopBtn.disabled = false;
                 }
+
+                startAnimationLoop();
             }
 
             async function stopAudio() {
                 if (!audioCtx) return;
-                startStopBtn.disabled = true;
-                startStopBtn.textContent = '停止中…';
                 for (let i = 0; i < activeSources.length; i++) {
                     if (activeSources[i]) {
                         try { activeSources[i].stop(); } catch {}
@@ -1544,7 +1158,6 @@
                         activeAnalysers[i] = null;
                         activeDataArrays[i] = null;
                         isActive[i] = false;
-                        isPlaying[i] = false;
                         const playBtn = document.querySelector(`.play-btn[data-index="${i}"]`);
                         if (playBtn) {
                             playBtn.classList.remove('active');
@@ -1552,6 +1165,7 @@
                         }
                         const sliderContainer = document.querySelector(`.slider-container[data-index="${i}"]`);
                         if (sliderContainer) sliderContainer.classList.remove('active');
+                        // 频谱颜色由动画循环处理
                     }
                 }
                 if (customSource) {
@@ -1565,38 +1179,16 @@
                 audioCtx = null;
                 masterGain = null;
                 startStopBtn.textContent = '▶ 启动';
-                startStopBtn.disabled = false;
                 logEvent('音频引擎停止');
                 stopAnimationLoop();
             }
 
-            async function playSound(index) {
+            async function loadAndPlaySound(index) {
                 if (!audioCtx) {
-                    logEvent('请先启动引擎', true);
+                    logEvent('尝试播放但引擎未启动', true);
                     return;
                 }
-
-                if (isActive[index]) {
-                    try {
-                        if (activeSources[index]) {
-                            activeSources[index].stop();
-                            activeSources[index] = null;
-                        }
-                        activeGains[index] = null;
-                        activeFilters[index] = null;
-                        activeAnalysers[index] = null;
-                        activeDataArrays[index] = null;
-                        isActive[index] = false;
-                        isPlaying[index] = false;
-                        const playBtn = document.querySelector(`.play-btn[data-index="${index}"]`);
-                        if (playBtn) {
-                            playBtn.classList.remove('active');
-                            playBtn.textContent = '▶️';
-                        }
-                    } catch (err) {
-                        logEvent(`停止旧声音失败: ${err}`, true);
-                    }
-                }
+                if (isActive[index]) return;
 
                 const sound = soundData[index];
                 const volume = volumes[index] || 0.5;
@@ -1623,15 +1215,23 @@
                         }
                     }
 
+                    // 创建 Analyser
                     const analyser = audioCtx.createAnalyser();
-                    analyser.fftSize = 32;
+                    analyser.fftSize = 32;  // 32 -> 16 个频段
                     const dataArray = new Uint8Array(analyser.frequencyBinCount);
                     lastNode.connect(analyser);
-
+                    analyser.connect(masterGain);  // 注意：这里直接连接到 masterGain，而不是经过 gainNode？我们需要音量控制，所以应该先经过 gainNode
+                    // 修正：顺序应为 source -> filters -> analyser -> gainNode -> masterGain
+                    // 重新连接：
+                    // 断开 analyser 到 masterGain 的连接，改为 analyser -> gainNode
+                    analyser.disconnect();
                     const gainNode = audioCtx.createGain();
                     gainNode.gain.value = volume;
                     analyser.connect(gainNode);
                     gainNode.connect(masterGain);
+
+                    // 但之前 lastNode 已经连接到 analyser，所以整体链为 lastNode -> analyser -> gainNode -> masterGain
+                    // 正确。
 
                     source.start(0);
 
@@ -1641,7 +1241,6 @@
                     activeAnalysers[index] = analyser;
                     activeDataArrays[index] = dataArray;
                     isActive[index] = true;
-                    isPlaying[index] = true;
 
                     const playBtn = document.querySelector(`.play-btn[data-index="${index}"]`);
                     const sliderContainer = document.querySelector(`.slider-container[data-index="${index}"]`);
@@ -1663,49 +1262,50 @@
                 }
             }
 
+            function stopSound(index) {
+                if (!audioCtx || !isActive[index]) return;
+                try {
+                    if (activeSources[index]) {
+                        activeSources[index].stop();
+                        activeSources[index] = null;
+                    }
+                    activeGains[index] = null;
+                    activeFilters[index] = null;
+                    activeAnalysers[index] = null;
+                    activeDataArrays[index] = null;
+                    isActive[index] = false;
+                    const playBtn = document.querySelector(`.play-btn[data-index="${index}"]`);
+                    if (playBtn) {
+                        playBtn.classList.remove('active');
+                        playBtn.textContent = '▶️';
+                    }
+                    logEvent(`关闭声音: ${soundData[index].name}`);
+                } catch (err) {
+                    logEvent(`关闭声音失败: ${err}`, true);
+                }
+            }
+
+            function togglePower(index) {
+                if (!audioCtx) {
+                    logEvent('请先启动引擎', true);
+                    return;
+                }
+                if (isActive[index]) {
+                    stopSound(index);
+                } else {
+                    loadAndPlaySound(index);
+                }
+            }
+
             function setVolume(index, vol) {
                 volumes[index] = vol;
-                if (activeGains[index] && isPlaying[index]) {
+                if (activeGains[index]) {
                     activeGains[index].gain.setValueAtTime(vol, audioCtx.currentTime);
                 }
             }
 
-            // 分类与频段过滤
-            let currentCategory = 'all';
-            let currentBand = null; // 新增频段筛选，null表示全部
-
-            function applyFilters() {
-                const cards = document.querySelectorAll('.card');
-                cards.forEach((card, index) => {
-                    const itemCat = soundData[index].category;
-                    const itemName = soundData[index].name.toLowerCase();
-                    const itemBand = soundData[index].band;
-                    const catMatch = currentCategory === 'all' || itemCat === currentCategory;
-                    const bandMatch = !currentBand || itemBand === currentBand;
-                    const searchMatch = currentSearchTerm === '' || itemName.includes(currentSearchTerm.toLowerCase());
-                    card.style.display = catMatch && bandMatch && searchMatch ? '' : 'none';
-                });
-            }
-
-            // 更新滑动高亮（支持多行）
-            function updateSlider(activeBtn) {
-                if (!activeBtn) return;
-                const navRect = categoryNav.getBoundingClientRect();
-                const btnRect = activeBtn.getBoundingClientRect();
-                const left = btnRect.left - navRect.left;
-                const top = btnRect.top - navRect.top;
-                categorySlider.style.left = left + 'px';
-                categorySlider.style.top = top + 'px';
-                categorySlider.style.width = btnRect.width + 'px';
-                categorySlider.style.height = btnRect.height + 'px';
-            }
-
             function buildCategoryNav() {
-                // 获取所有分类（包括原有的和新增的频段）
                 const cats = [...new Set(soundData.map(item => item.category))].sort();
-                // 添加频段标签
-                const bandLabels = ['低频', '中频', '高频'];
-                // 全部 + 分类 + 频段
                 categoryNav.innerHTML = '<button class="category-btn active" data-category="all">全部</button>';
                 cats.forEach(cat => {
                     const btn = document.createElement('button');
@@ -1714,43 +1314,25 @@
                     btn.textContent = cat;
                     categoryNav.appendChild(btn);
                 });
-                // 添加频段按钮，使用 data-band 属性
-                bandLabels.forEach(band => {
-                    const btn = document.createElement('button');
-                    btn.className = 'category-btn';
-                    btn.dataset.band = band;
-                    btn.textContent = band;
-                    categoryNav.appendChild(btn);
-                });
-
-                // 初始化滑动高亮
-                setTimeout(() => {
-                    const activeBtn = categoryNav.querySelector('.active');
-                    if (activeBtn) updateSlider(activeBtn);
-                }, 10);
 
                 categoryNav.querySelectorAll('.category-btn').forEach(btn => {
                     btn.addEventListener('click', () => {
-                        // 移除所有 active
                         categoryNav.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
                         btn.classList.add('active');
-                        updateSlider(btn);
-
-                        // 判断是分类还是频段
-                        if (btn.dataset.category !== undefined) {
-                            currentCategory = btn.dataset.category;
-                            currentBand = null;
-                        } else if (btn.dataset.band !== undefined) {
-                            currentBand = btn.dataset.band;
-                            currentCategory = 'all'; // 频段筛选时忽略分类
-                        }
-                        applyFilters();
-                        logEvent(`切换筛选: ${btn.textContent}`);
+                        const selectedCat = btn.dataset.category;
+                        filterGrid(selectedCat);
+                        logEvent(`切换分类至: ${selectedCat}`);
                     });
                 });
             }
 
-            let currentSearchTerm = '';
+            function filterGrid(category) {
+                const cards = document.querySelectorAll('.card');
+                cards.forEach((card, index) => {
+                    const itemCat = soundData[index].category;
+                    card.style.display = (category === 'all' || itemCat === category) ? '' : 'none';
+                });
+            }
 
             function toggleFold(index, foldBtn, sliderContainer) {
                 const isFolded = foldBtn.classList.toggle('folded');
@@ -1771,6 +1353,7 @@
 
             function buildGrid() {
                 grid.innerHTML = '';
+                // 清空频谱数组
                 spectrumBars.length = 0;
 
                 soundData.forEach((item, idx) => {
@@ -1795,10 +1378,7 @@
                     playBtn.className = 'play-btn';
                     playBtn.dataset.index = idx;
                     playBtn.textContent = '▶️';
-                    playBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        playSound(idx);
-                    });
+                    playBtn.addEventListener('click', (e) => togglePower(idx));
 
                     const foldBtn = document.createElement('div');
                     foldBtn.className = 'fold-btn folded';
@@ -1820,13 +1400,16 @@
                     footer.appendChild(foldBtn);
                     footer.appendChild(sliderContainer);
 
+                    // 频谱
                     const spectrum = document.createElement('div');
                     spectrum.className = 'spectrum-container';
                     const bars = [];
+                    // 生成10条随机高度的线条
                     const barCount = 10;
                     for (let i = 0; i < barCount; i++) {
                         const bar = document.createElement('div');
                         bar.className = 'spectrum-bar';
+                        // 随机高度 6-24px
                         const height = 6 + Math.floor(Math.random() * 19);
                         bar.style.height = height + 'px';
                         spectrum.appendChild(bar);
@@ -1840,15 +1423,12 @@
                     grid.appendChild(card);
 
                     volumes[idx] = 0.5;
-                    isPlaying[idx] = false;
 
                     foldBtn.addEventListener('click', (e) => {
                         e.stopPropagation();
                         toggleFold(idx, foldBtn, sliderContainer);
                     });
                 });
-
-                applyFilters();
 
                 let activeDragIndex = null;
                 let isDragging = false;
@@ -2152,29 +1732,6 @@
                         logEvent(`启动失败: ${err}`, true);
                     });
                 }
-            });
-
-            searchInput.addEventListener('input', (e) => {
-                currentSearchTerm = e.target.value;
-                if (currentSearchTerm) {
-                    searchContainer.classList.add('has-text');
-                } else {
-                    searchContainer.classList.remove('has-text');
-                }
-                applyFilters();
-            });
-
-            clearSearchBtn.addEventListener('click', () => {
-                searchInput.value = '';
-                currentSearchTerm = '';
-                searchContainer.classList.remove('has-text');
-                applyFilters();
-            });
-
-            // 窗口大小改变时重新计算滑动条位置（防止偏移）
-            window.addEventListener('resize', () => {
-                const activeBtn = categoryNav.querySelector('.active');
-                if (activeBtn) updateSlider(activeBtn);
             });
 
             loadSettings();
