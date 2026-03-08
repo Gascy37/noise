@@ -5,55 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>星光环境Sound_512种氛围音</title>
     <style>
-        /* ===== 全局变量 ===== */
+        /* ===== Material Design 3 基础配色 ===== */
         :root {
-            --card-radius: 8px;
-            --transition-default: all 0.2s ease;
-            --font-sans: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            --card-radius: 12px;
         }
-
-        /* 浅色主题 (默认) */
         .light-theme {
-            --bg-primary: #f5f5f5;
-            --bg-surface: #ffffff;
-            --bg-surface-hover: #f0f0f0;
-            --bg-surface-variant: #e8e8e8;
-            --text-primary: #1e1e1e;
-            --text-secondary: #5e5e5e;
-            --border-color: #d0d0d0;
-            --outline-color: #a0a0a0;
-            --primary-color: #006a6a;
-            --primary-on: #ffffff;
-            --primary-container: #d0f0f0;
-            --shadow-color: rgba(0,0,0,0.1);
+            --md-sys-color-primary: #006a6a;
+            --md-sys-color-on-primary: #ffffff;
+            --md-sys-color-primary-container: #6ff7f7;
+            --md-sys-color-on-primary-container: #002020;
+            --md-sys-color-secondary: #4a6363;
+            --md-sys-color-on-secondary: #ffffff;
+            --md-sys-color-surface: #f9fafb;
+            --md-sys-color-on-surface: #1b1c1e;
+            --md-sys-color-surface-variant: #dde4e4;
+            --md-sys-color-on-surface-variant: #414848;
+            --md-sys-color-outline: #717878;
+            --md-sys-color-shadow: #000000;
+            --md-sys-color-surface-tint: #006a6a;
+            --md-sys-color-inverse-surface: #2f3133;
+            --md-sys-color-inverse-on-surface: #f0f1f3;
         }
-
-        /* 深色主题 */
         .dark-theme {
-            --bg-primary: #121212;
-            --bg-surface: #1e1e1e;
-            --bg-surface-hover: #2a2a2a;
-            --bg-surface-variant: #2a2a2a;
-            --text-primary: #e0e0e0;
-            --text-secondary: #a0a0a0;
-            --border-color: #333333;
-            --outline-color: #555555;
-            --primary-color: #4fd8d8;
-            --primary-on: #121212;
-            --primary-container: #003737;
-            --shadow-color: rgba(0,0,0,0.5);
+            --md-sys-color-primary: #4fd8d8;
+            --md-sys-color-on-primary: #003737;
+            --md-sys-color-primary-container: #004f4f;
+            --md-sys-color-on-primary-container: #6ff7f7;
+            --md-sys-color-secondary: #b1cbcb;
+            --md-sys-color-on-secondary: #1b3535;
+            --md-sys-color-surface: #121416;
+            --md-sys-color-on-surface: #e2e3e5;
+            --md-sys-color-surface-variant: #3f4949;
+            --md-sys-color-on-surface-variant: #c0c9c9;
+            --md-sys-color-outline: #8a9393;
+            --md-sys-color-shadow: #000000;
+            --md-sys-color-surface-tint: #4fd8d8;
+            --md-sys-color-inverse-surface: #e2e3e5;
+            --md-sys-color-inverse-on-surface: #1b1c1e;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
         }
 
         body {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            font-family: var(--font-sans);
+            background: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
             min-height: 100vh;
             padding: 1.5rem 1rem;
             display: flex;
@@ -66,21 +66,20 @@
             width: 100%;
         }
 
-        /* 头部 */
         .header {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             gap: 0.8rem;
         }
 
         .header h1 {
-            font-size: 2rem;
-            font-weight: 600;
+            font-size: 1.8rem;
+            font-weight: 500;
             letter-spacing: -0.02em;
-            color: var(--text-primary);
+            color: var(--md-sys-color-on-surface);
         }
 
         .controls-bar {
@@ -94,14 +93,13 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
+            background: var(--md-sys-color-surface-variant);
             padding: 0.4rem 1rem 0.4rem 1.2rem;
-            border-radius: 30px;
+            border-radius: 32px;
         }
 
         .master-volume label {
-            color: var(--text-secondary);
+            color: var(--md-sys-color-on-surface-variant);
             font-size: 0.9rem;
             font-weight: 500;
         }
@@ -116,75 +114,67 @@
         }
         .master-slider-track {
             width: 100%;
-            height: 6px;
-            background: var(--outline-color);
-            border-radius: 10px;
+            height: 10px;
+            background: var(--md-sys-color-outline);
+            border-radius: 20px;
             position: relative;
             overflow: hidden;
         }
         .master-slider-fill {
             height: 100%;
             width: 50%;
-            background: var(--primary-color);
-            border-radius: 10px;
+            background: var(--md-sys-color-primary);
+            border-radius: 20px;
             pointer-events: none;
         }
 
         #masterVal {
             min-width: 40px;
-            color: var(--primary-color);
+            color: var(--md-sys-color-primary);
             font-weight: 600;
             font-size: 0.9rem;
         }
 
         #startStopBtn {
-            background: var(--primary-color);
-            color: var(--primary-on);
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
             border: none;
             padding: 0.6rem 1.8rem;
-            border-radius: 30px;
+            border-radius: 40px;
             font-size: 0.95rem;
             font-weight: 600;
+            letter-spacing: 0.02em;
             cursor: pointer;
-            transition: filter 0.2s;
-        }
-        #startStopBtn:hover {
-            filter: brightness(1.1);
         }
 
-        /* 上传与设置两列 */
         .top-row {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1rem;
             margin-bottom: 2rem;
+            width: 100%;
         }
 
         .upload-section {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
+            background: var(--md-sys-color-surface-variant);
             border-radius: var(--card-radius);
             padding: 1rem;
             display: flex;
             flex-direction: column;
             gap: 0.8rem;
+            width: 100%;
         }
         .upload-label {
             display: flex;
             align-items: center;
             gap: 0.4rem;
             cursor: pointer;
-            background: var(--primary-color);
-            color: var(--primary-on);
+            color: var(--md-sys-color-primary);
+            background: var(--md-sys-color-surface);
             padding: 0.4rem 1.2rem;
-            border-radius: 30px;
+            border-radius: 32px;
             font-weight: 500;
             align-self: flex-start;
-            border: none;
-            transition: filter 0.2s;
-        }
-        .upload-label:hover {
-            filter: brightness(1.1);
         }
         #fileInput { display: none; }
 
@@ -199,7 +189,7 @@
             display: flex;
         }
         #fileName {
-            color: var(--text-secondary);
+            color: var(--md-sys-color-on-surface-variant);
             max-width: 120px;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -207,9 +197,9 @@
             font-size: 0.9rem;
         }
         .icon-btn {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
+            background: var(--md-sys-color-surface);
+            border: none;
+            color: var(--md-sys-color-on-surface);
             width: 36px;
             height: 36px;
             border-radius: 50%;
@@ -218,16 +208,10 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s, border-color 0.2s;
-        }
-        .icon-btn:hover {
-            background: var(--primary-container);
-            border-color: var(--primary-color);
         }
         .icon-btn.active {
-            background: var(--primary-color);
-            color: var(--primary-on);
-            border-color: var(--primary-color);
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
         }
         .custom-slider-container {
             flex: 1;
@@ -239,28 +223,28 @@
         }
         .custom-slider-track {
             width: 100%;
-            height: 6px;
-            background: var(--outline-color);
-            border-radius: 10px;
+            height: 10px;
+            background: var(--md-sys-color-outline);
+            border-radius: 20px;
             position: relative;
             overflow: hidden;
         }
         .custom-slider-fill {
             height: 100%;
             width: 60%;
-            background: var(--primary-color);
-            border-radius: 10px;
+            background: var(--md-sys-color-primary);
+            border-radius: 20px;
             pointer-events: none;
         }
 
         .settings-section {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
+            background: var(--md-sys-color-surface-variant);
             border-radius: var(--card-radius);
             padding: 1rem;
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            width: 100%;
         }
         .setting-item {
             display: flex;
@@ -269,169 +253,102 @@
             flex-wrap: wrap;
         }
         .setting-item label {
-            color: var(--text-secondary);
+            color: var(--md-sys-color-on-surface-variant);
             font-size: 0.9rem;
             font-weight: 500;
             min-width: 40px;
         }
 
-        .hex-group {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            flex: 1;
-            min-width: 160px;
-        }
         .hex-wrapper {
-            flex: 0 1 90px;
+            flex: 1;
+            min-width: 120px;
             display: flex;
             align-items: center;
-            background: var(--bg-surface-variant);
-            border: 1px solid var(--border-color);
+            background: var(--md-sys-color-surface);
+            border: 1px solid var(--md-sys-color-outline);
             border-radius: 20px;
             padding: 0 0.5rem;
         }
-        .hex-wrapper:focus-within {
-            border-color: var(--primary-color);
-        }
         .hex-prefix {
-            color: var(--text-secondary);
+            color: var(--md-sys-color-on-surface-variant);
             font-size: 1rem;
             padding-right: 0.2rem;
         }
         #hexInput {
-            width: 60px;
+            flex: 1;
             background: transparent;
             border: none;
-            padding: 0.5rem 0;
-            color: var(--text-primary);
+            padding: 0.5rem 0.5rem 0.5rem 0;
+            color: var(--md-sys-color-on-surface);
             font-size: 0.9rem;
             outline: none;
-        }
-        .hex-confirm-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            border: none;
-            color: var(--primary-on);
-            font-size: 1rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: filter 0.2s;
-        }
-        .hex-confirm-btn:hover {
-            filter: brightness(1.1);
+            min-width: 60px;
         }
 
         #columnSelect, #themeSelect {
             flex: 1;
             min-width: 120px;
-            background: var(--bg-surface-variant);
-            border: 1px solid var(--border-color);
+            background: var(--md-sys-color-surface);
+            border: 1px solid var(--md-sys-color-outline);
             border-radius: 20px;
             padding: 0.5rem 1rem;
-            color: var(--text-primary);
+            color: var(--md-sys-color-on-surface);
             font-size: 0.9rem;
             outline: none;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a0a0a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23717878' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 0.8rem center;
             background-size: 16px;
             padding-right: 2.5rem;
         }
 
-        /* 卡片颜色同步开关 */
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 48px;
-            height: 24px;
-            background: var(--bg-surface-variant);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            cursor: pointer;
-        }
-        .toggle-switch::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            top: 1px;
-            left: 1px;
-            transition: transform 0.2s;
-        }
-        .toggle-switch.active::after {
-            transform: translateX(24px);
-        }
-        #cardColorSyncCheckbox {
-            display: none;
-        }
-        .toggle-label {
-            margin-left: 0.5rem;
-            color: var(--text-primary);
-            font-size: 0.9rem;
-        }
-
         .log-btn {
-            background: var(--primary-color);
-            color: var(--primary-on);
-            border: none;
-            border-radius: 30px;
+            background: var(--md-sys-color-surface);
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: 32px;
             padding: 0.5rem 1.2rem;
+            color: var(--md-sys-color-on-surface);
             font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
             align-self: flex-end;
             margin-top: 0.5rem;
-            transition: filter 0.2s;
-        }
-        .log-btn:hover {
-            filter: brightness(1.1);
         }
 
-        /* 分类导航 */
         .category-container {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
+            background: var(--md-sys-color-surface-variant);
             border-radius: var(--card-radius);
             padding: 1rem;
             margin-bottom: 1.5rem;
+            width: 100%;
         }
         .category-nav {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
+            width: 100%;
         }
         .category-btn {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            border-radius: 30px;
+            flex: 1 0 auto;
+            min-width: fit-content;
+            background: var(--md-sys-color-surface);
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: 32px;
             padding: 0.4rem 1rem;
             font-size: 0.9rem;
             font-weight: 500;
+            color: var(--md-sys-color-on-surface-variant);
             cursor: pointer;
-            transition: background 0.2s, border-color 0.2s, color 0.2s;
+            transition: 0.1s;
             text-align: center;
         }
-        .category-btn:hover {
-            background: var(--primary-container);
-            border-color: var(--primary-color);
-            color: var(--text-primary);
-        }
         .category-btn.active {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-            color: var(--primary-on);
+            background: var(--md-sys-color-primary);
+            border-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
         }
 
-        /* 网格 */
         .grid {
             display: grid;
             gap: 1rem;
@@ -439,33 +356,26 @@
             grid-template-columns: repeat(2, 1fr);
         }
 
-        /* 卡片 */
         .card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
+            background: var(--md-sys-color-surface-variant);
             border-radius: var(--card-radius);
-            padding: 1rem 0.8rem 0.8rem 0.8rem;
+            padding: 1rem 0.8rem 1rem 0.8rem;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
             min-width: 0;
-            transition: background 0.2s;
-        }
-        .card:hover {
-            background: var(--bg-surface-hover);
         }
 
-        /* 左侧彩色条 */
         .card::before {
             content: '';
             position: absolute;
             left: 0;
             top: 8px;
             bottom: 8px;
-            width: 3px;
-            border-radius: 0 2px 2px 0;
-            background-color: var(--card-color, var(--primary-color));
+            width: 6px;
+            border-radius: 0 4px 4px 0;
+            background-color: var(--card-color, var(--md-sys-color-primary));
         }
 
         .card-header {
@@ -473,90 +383,66 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 0.5rem;
-            padding-left: 8px;
+            padding-left: 10px;
         }
 
         .title-group {
             display: flex;
             flex-direction: column;
             min-width: 0;
-            text-align: left;
         }
 
         .title-group span {
             font-size: 1rem;
             font-weight: 500;
-            color: var(--text-primary);
+            color: var(--md-sys-color-on-surface);
+            letter-spacing: 0.01em;
             word-break: break-word;
         }
 
         .category-tag {
             font-size: 0.7rem;
-            color: var(--text-secondary);
-            background: var(--bg-surface-variant);
+            color: var(--md-sys-color-primary);
+            background: var(--md-sys-color-surface);
             padding: 0.2rem 0.6rem;
             border-radius: 12px;
             align-self: flex-start;
             margin-top: 0.2rem;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--md-sys-color-outline);
+            word-break: break-word;
+            max-width: 100%;
         }
 
         .card-footer {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
+            align-items: flex-start;
             gap: 0.5rem;
-            padding-left: 8px;
-            margin-bottom: 0.5rem;
+            padding-left: 10px;
+            margin-top: 0.2rem;
             min-width: 0;
         }
 
         .play-btn {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
+            background: var(--md-sys-color-surface);
+            border: 2px solid var(--md-sys-color-outline);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            transition: background 0.2s, border-color 0.2s, color 0.2s;
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 1rem;
+            transition: 0.1s;
             flex-shrink: 0;
-        }
-        .play-btn:hover {
-            background: var(--primary-container);
-            border-color: var(--primary-color);
-        }
-        .play-btn.active {
-            background: var(--primary-color);
-            color: var(--primary-on);
-            border-color: var(--primary-color);
         }
 
-        .fold-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            transition: background 0.2s, border-color 0.2s, transform 0.2s;
-            flex-shrink: 0;
-        }
-        .fold-btn:hover {
-            background: var(--primary-container);
-            border-color: var(--primary-color);
-        }
-        .fold-btn.folded {
-            transform: rotate(-90deg);
+        .play-btn.active {
+            background: var(--md-sys-color-primary);
+            border-color: var(--md-sys-color-primary);
+            color: white;
         }
 
         .slider-container {
@@ -567,47 +453,30 @@
             align-items: center;
             cursor: pointer;
             position: relative;
-        }
-        .slider-container.hidden {
             display: none;
+        }
+
+        .slider-container.active {
+            display: flex;
         }
 
         .slider-track {
             width: 100%;
-            height: 6px;
-            background: var(--outline-color);
-            border-radius: 10px;
+            height: 10px;
+            background: var(--md-sys-color-outline);
+            border-radius: 20px;
             position: relative;
             overflow: hidden;
         }
+
         .slider-fill {
             height: 100%;
             width: 0%;
-            background: var(--primary-color);
-            border-radius: 10px;
+            background: var(--md-sys-color-primary);
+            border-radius: 20px;
             pointer-events: none;
         }
 
-        /* 频谱 */
-        .spectrum-container {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 2px;
-            height: 30px;
-            margin-top: 4px;
-            padding-left: 8px;
-            padding-right: 4px;
-        }
-        .spectrum-bar {
-            width: 4px;
-            border-radius: 2px;
-            background-color: var(--outline-color);
-            transition: background-color 0.1s;
-            will-change: height;
-        }
-
-        /* 日志模态框 */
         .log-modal {
             display: none;
             position: fixed;
@@ -624,9 +493,8 @@
             display: flex;
         }
         .log-content {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: var(--card-radius);
+            background: var(--md-sys-color-surface);
+            border-radius: 28px;
             width: 90%;
             max-width: 600px;
             max-height: 80vh;
@@ -641,30 +509,27 @@
             align-items: center;
         }
         .log-header h3 {
-            color: var(--text-primary);
+            color: var(--md-sys-color-on-surface);
         }
         .close-btn {
             background: transparent;
             border: none;
-            color: var(--text-secondary);
+            color: var(--md-sys-color-on-surface-variant);
             font-size: 1.5rem;
             cursor: pointer;
-        }
-        .close-btn:hover {
-            color: var(--primary-color);
         }
         .log-list {
             overflow-y: auto;
             max-height: 60vh;
             padding: 0.5rem;
-            background: var(--bg-surface-variant);
-            border-radius: 8px;
+            background: var(--md-sys-color-surface-variant);
+            border-radius: 16px;
         }
         .log-item {
             padding: 0.3rem 0;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--md-sys-color-outline);
             font-size: 0.85rem;
-            color: var(--text-primary);
+            color: var(--md-sys-color-on-surface);
             word-break: break-word;
         }
         .log-item:last-child {
@@ -674,7 +539,7 @@
         footer {
             margin-top: 2rem;
             text-align: center;
-            color: var(--text-secondary);
+            color: var(--md-sys-color-on-surface-variant);
             font-size: 0.8rem;
         }
     </style>
@@ -719,12 +584,9 @@
             <div class="settings-section">
                 <div class="setting-item">
                     <label>主题色</label>
-                    <div class="hex-group">
-                        <div class="hex-wrapper">
-                            <span class="hex-prefix">#</span>
-                            <input type="text" id="hexInput" placeholder="006a6a" value="006a6a" maxlength="6">
-                        </div>
-                        <button class="hex-confirm-btn" id="hexConfirmBtn">↵</button>
+                    <div class="hex-wrapper">
+                        <span class="hex-prefix">#</span>
+                        <input type="text" id="hexInput" placeholder="006a6a" value="006a6a" maxlength="6">
                     </div>
                 </div>
                 <div class="setting-item">
@@ -742,16 +604,6 @@
                         <option value="light" selected>浅色</option>
                         <option value="dark">深色</option>
                     </select>
-                </div>
-                <!-- 卡片颜色同步开关 -->
-                <div class="setting-item">
-                    <label>卡片颜色</label>
-                    <div style="display: flex; align-items: center;">
-                        <label class="toggle-switch" id="cardColorToggle">
-                            <input type="checkbox" id="cardColorSyncCheckbox">
-                        </label>
-                        <span class="toggle-label">跟随主题色</span>
-                    </div>
                 </div>
                 <button class="log-btn" id="logBtn">📋 报错日志</button>
             </div>
@@ -809,7 +661,6 @@
             const customFill = document.getElementById('customFill');
             const customControls = document.getElementById('customControls');
             const hexInput = document.getElementById('hexInput');
-            const hexConfirmBtn = document.getElementById('hexConfirmBtn');
             const columnSelect = document.getElementById('columnSelect');
             const themeSelect = document.getElementById('themeSelect');
             const categoryNav = document.getElementById('categoryNav');
@@ -817,61 +668,11 @@
             const logModal = document.getElementById('logModal');
             const closeLogBtn = document.getElementById('closeLogBtn');
             const logList = document.getElementById('logList');
-            const cardColorCheckbox = document.getElementById('cardColorSyncCheckbox');
-            const cardColorToggle = document.getElementById('cardColorToggle');
-
-            // 本地存储
-            const STORAGE_KEY = 'soundMixerSettings';
-            function loadSettings() {
-                try {
-                    const saved = localStorage.getItem(STORAGE_KEY);
-                    if (saved) {
-                        const settings = JSON.parse(saved);
-                        if (settings.hexColor) {
-                            hexInput.value = settings.hexColor.replace('#', '');
-                            applyHexColor(settings.hexColor);
-                        }
-                        if (settings.columns) {
-                            columnSelect.value = settings.columns;
-                            grid.style.gridTemplateColumns = `repeat(${settings.columns}, 1fr)`;
-                        }
-                        if (settings.theme) {
-                            themeSelect.value = settings.theme;
-                            document.body.className = settings.theme === 'light' ? 'light-theme' : 'dark-theme';
-                        }
-                        if (settings.cardColorSync !== undefined) {
-                            cardColorCheckbox.checked = settings.cardColorSync;
-                            updateToggleClass();
-                            updateCardColors();
-                        }
-                    }
-                } catch (e) {
-                    logEvent('读取存储失败', true);
-                }
-            }
-            function saveSettings() {
-                const settings = {
-                    hexColor: '#' + hexInput.value,
-                    columns: columnSelect.value,
-                    theme: themeSelect.value,
-                    cardColorSync: cardColorCheckbox.checked,
-                };
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
-            }
-
-            function updateToggleClass() {
-                if (cardColorCheckbox.checked) {
-                    cardColorToggle.classList.add('active');
-                } else {
-                    cardColorToggle.classList.remove('active');
-                }
-            }
 
             themeSelect.addEventListener('change', (e) => {
                 const theme = e.target.value;
                 document.body.className = theme === 'light' ? 'light-theme' : 'dark-theme';
                 logEvent(`主题切换为: ${theme}`);
-                saveSettings();
             });
 
             logBtn.addEventListener('click', () => {
@@ -889,13 +690,8 @@
             const activeSources = [];
             const activeGains = [];
             const activeFilters = [];
-            const activeAnalysers = [];      // 存储 AnalyserNode
-            const activeDataArrays = [];      // 存储 Uint8Array 数据
             const volumes = [];
             const isActive = [];
-
-            // 存储每个卡片的频谱条元素
-            const spectrumBars = [];
 
             let customBuffer = null;
             let customSource = null;
@@ -903,55 +699,7 @@
             let customPlaying = false;
             let customArrayBuffer = null;
 
-            // 动画循环控制
-            let animFrame = null;
-            function startAnimationLoop() {
-                if (animFrame) return;
-                function loop() {
-                    // 更新所有活跃音轨的频谱
-                    for (let i = 0; i < activeAnalysers.length; i++) {
-                        if (!activeAnalysers[i]) continue;
-                        const analyser = activeAnalysers[i];
-                        const dataArray = activeDataArrays[i];
-                        const bars = spectrumBars[i];
-                        if (!bars) continue;
-
-                        const active = isActive[i] && volumes[i] > 0;
-                        if (active) {
-                            analyser.getByteFrequencyData(dataArray);
-                            const barCount = bars.length;
-                            const binSize = Math.floor(dataArray.length / barCount);
-                            for (let j = 0; j < barCount; j++) {
-                                let sum = 0;
-                                for (let k = 0; k < binSize; k++) {
-                                    sum += dataArray[j * binSize + k] || 0;
-                                }
-                                const avg = sum / binSize;
-                                // 映射高度 4-28px
-                                const height = 4 + (avg / 255) * 24;
-                                bars[j].style.height = height + 'px';
-                                bars[j].style.backgroundColor = 'var(--primary-color)';
-                            }
-                        } else {
-                            // 不活跃或音量为0：灰色，高度保持原样（不更新高度）
-                            for (let j = 0; j < bars.length; j++) {
-                                bars[j].style.backgroundColor = 'var(--outline-color)';
-                            }
-                        }
-                    }
-                    animFrame = requestAnimationFrame(loop);
-                }
-                animFrame = requestAnimationFrame(loop);
-            }
-
-            function stopAnimationLoop() {
-                if (animFrame) {
-                    cancelAnimationFrame(animFrame);
-                    animFrame = null;
-                }
-            }
-
-            // ---------- 512个手工命名声音 ----------
+            // ---------- 512个手工命名声音 (与之前相同) ----------
             const soundNames = [
                 "细雨微风", "暴雨倾盆", "海浪拍岸", "篝火噼啪", "森林晨雾", "山涧溪流", "风扇旋转", "空调外机",
                 "雷声滚滚", "远雷低吟", "瀑布轰鸣", "壁炉柴火", "沙漠风沙", "冰川融化", "宇宙静电", "火车轨道",
@@ -1025,6 +773,7 @@
             ];
             console.assert(soundNames.length === 512, '声音数量应为512');
 
+            // 分类函数：根据名称关键词判断分类（与之前相同）
             function detectCategory(name) {
                 const kw = {
                     '雨声': ['雨', '雷', '湿', '淅沥', '哗哗', '轰隆隆'],
@@ -1045,30 +794,41 @@
                 return '氛围';
             }
 
+            // 增强的音频参数生成：使每个声音更独特、更准确
             function generateAudioParams(index) {
-                const seed = index * 7919 + 131071;
+                // 使用更复杂的种子
+                const seed = index * 7919 + 131071; // 质数混合
                 const rand = (min, max) => {
                     const x = Math.sin(seed) * 10000;
                     return min + (x - Math.floor(x)) * (max - min);
                 };
+
+                // 噪声类型：白、粉、棕，根据声音类别倾向
                 const typeRand = (seed * 23) % 100;
                 let type;
                 if (typeRand < 30) type = 'white';
                 else if (typeRand < 70) type = 'pink';
                 else type = 'brown';
+
+                // 滤波器数量 1-4 个，增加多样性
                 const numFilters = 1 + ((seed * 29) % 4);
                 const filters = [];
                 const filterTypes = ['lowpass', 'highpass', 'bandpass', 'notch', 'peaking', 'lowshelf', 'highshelf'];
                 for (let f = 0; f < numFilters; f++) {
+                    // 类型选择
                     const fType = filterTypes[(seed + f * 37) % filterTypes.length];
+                    // 频率范围扩大，覆盖超低频到超高频
                     const freq = 15 + ((seed * 41 + f * 53) % 18000);
-                    const Q = 0.2 + ((seed + f * 61) % 98) / 20;
-                    const gain = -12 + ((seed * 71 + f * 83) % 25);
+                    // Q值范围扩大
+                    const Q = 0.2 + ((seed + f * 61) % 98) / 20; // 0.2-5.1
+                    // 增益范围扩大
+                    const gain = -12 + ((seed * 71 + f * 83) % 25); // -12 ~ +12 dB
                     filters.push({ type: fType, freq, Q, gain });
                 }
                 return { type, filters };
             }
 
+            // 生成声音数据数组
             const soundData = soundNames.map((name, idx) => {
                 const category = detectCategory(name);
                 const { type, filters } = generateAudioParams(idx);
@@ -1077,6 +837,7 @@
 
             const baseHues = soundData.map((_, i) => (i * 17) % 360);
 
+            // Web Worker 生成噪声
             const workerBlob = new Blob([`
                 self.onmessage = function(e) {
                     const { type, sampleRate, duration, index } = e.data;
@@ -1126,6 +887,7 @@
                 });
             }
 
+            // 启动/停止引擎
             async function startAudio() {
                 if (audioCtx) return;
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)({ latencyHint: 'playback' });
@@ -1143,8 +905,6 @@
                         logEvent(`上传音频解码失败: ${err}`, true);
                     }
                 }
-
-                startAnimationLoop();
             }
 
             async function stopAudio() {
@@ -1155,8 +915,6 @@
                         activeSources[i] = null;
                         activeGains[i] = null;
                         activeFilters[i] = null;
-                        activeAnalysers[i] = null;
-                        activeDataArrays[i] = null;
                         isActive[i] = false;
                         const playBtn = document.querySelector(`.play-btn[data-index="${i}"]`);
                         if (playBtn) {
@@ -1165,7 +923,6 @@
                         }
                         const sliderContainer = document.querySelector(`.slider-container[data-index="${i}"]`);
                         if (sliderContainer) sliderContainer.classList.remove('active');
-                        // 频谱颜色由动画循环处理
                     }
                 }
                 if (customSource) {
@@ -1180,7 +937,6 @@
                 masterGain = null;
                 startStopBtn.textContent = '▶ 启动';
                 logEvent('音频引擎停止');
-                stopAnimationLoop();
             }
 
             async function loadAndPlaySound(index) {
@@ -1215,31 +971,16 @@
                         }
                     }
 
-                    // 创建 Analyser
-                    const analyser = audioCtx.createAnalyser();
-                    analyser.fftSize = 32;  // 32 -> 16 个频段
-                    const dataArray = new Uint8Array(analyser.frequencyBinCount);
-                    lastNode.connect(analyser);
-                    analyser.connect(masterGain);  // 注意：这里直接连接到 masterGain，而不是经过 gainNode？我们需要音量控制，所以应该先经过 gainNode
-                    // 修正：顺序应为 source -> filters -> analyser -> gainNode -> masterGain
-                    // 重新连接：
-                    // 断开 analyser 到 masterGain 的连接，改为 analyser -> gainNode
-                    analyser.disconnect();
                     const gainNode = audioCtx.createGain();
                     gainNode.gain.value = volume;
-                    analyser.connect(gainNode);
+                    lastNode.connect(gainNode);
                     gainNode.connect(masterGain);
-
-                    // 但之前 lastNode 已经连接到 analyser，所以整体链为 lastNode -> analyser -> gainNode -> masterGain
-                    // 正确。
 
                     source.start(0);
 
                     activeSources[index] = source;
                     activeGains[index] = gainNode;
                     activeFilters[index] = filters;
-                    activeAnalysers[index] = analyser;
-                    activeDataArrays[index] = dataArray;
                     isActive[index] = true;
 
                     const playBtn = document.querySelector(`.play-btn[data-index="${index}"]`);
@@ -1250,11 +991,8 @@
                     }
                     if (sliderContainer) {
                         sliderContainer.classList.add('active');
-                        sliderContainer.classList.remove('hidden');
                         const fill = sliderContainer.querySelector('.slider-fill');
                         fill.style.width = volume * 100 + '%';
-                        const foldBtn = document.querySelector(`.fold-btn[data-index="${index}"]`);
-                        if (foldBtn) foldBtn.classList.remove('folded');
                     }
                     logEvent(`声音启动: ${sound.name}`);
                 } catch (err) {
@@ -1271,14 +1009,14 @@
                     }
                     activeGains[index] = null;
                     activeFilters[index] = null;
-                    activeAnalysers[index] = null;
-                    activeDataArrays[index] = null;
                     isActive[index] = false;
                     const playBtn = document.querySelector(`.play-btn[data-index="${index}"]`);
                     if (playBtn) {
                         playBtn.classList.remove('active');
                         playBtn.textContent = '▶️';
                     }
+                    const sliderContainer = document.querySelector(`.slider-container[data-index="${index}"]`);
+                    if (sliderContainer) sliderContainer.classList.remove('active');
                     logEvent(`关闭声音: ${soundData[index].name}`);
                 } catch (err) {
                     logEvent(`关闭声音失败: ${err}`, true);
@@ -1304,6 +1042,7 @@
                 }
             }
 
+            // 构建UI
             function buildCategoryNav() {
                 const cats = [...new Set(soundData.map(item => item.category))].sort();
                 categoryNav.innerHTML = '<button class="category-btn active" data-category="all">全部</button>';
@@ -1334,33 +1073,13 @@
                 });
             }
 
-            function toggleFold(index, foldBtn, sliderContainer) {
-                const isFolded = foldBtn.classList.toggle('folded');
-                sliderContainer.classList.toggle('hidden', isFolded);
-            }
-
-            function updateCardColors() {
-                const cards = document.querySelectorAll('.card');
-                cards.forEach((card, idx) => {
-                    if (cardColorCheckbox.checked) {
-                        card.style.setProperty('--card-color', 'var(--primary-color)');
-                    } else {
-                        const hue = baseHues[idx];
-                        card.style.setProperty('--card-color', `hsl(${hue}, 80%, 55%)`);
-                    }
-                });
-            }
-
             function buildGrid() {
                 grid.innerHTML = '';
-                // 清空频谱数组
-                spectrumBars.length = 0;
-
                 soundData.forEach((item, idx) => {
                     const card = document.createElement('div');
                     card.className = 'card';
                     const hue = baseHues[idx];
-                    card.style.setProperty('--card-color', cardColorCheckbox.checked ? 'var(--primary-color)' : `hsl(${hue}, 80%, 55%)`);
+                    card.style.setProperty('--card-color', `hsl(${hue}, 80%, 55%)`);
 
                     const header = document.createElement('div');
                     header.className = 'card-header';
@@ -1380,13 +1099,8 @@
                     playBtn.textContent = '▶️';
                     playBtn.addEventListener('click', (e) => togglePower(idx));
 
-                    const foldBtn = document.createElement('div');
-                    foldBtn.className = 'fold-btn folded';
-                    foldBtn.dataset.index = idx;
-                    foldBtn.textContent = '▼';
-
                     const sliderContainer = document.createElement('div');
-                    sliderContainer.className = 'slider-container hidden';
+                    sliderContainer.className = 'slider-container';
                     sliderContainer.dataset.index = idx;
 
                     const track = document.createElement('div');
@@ -1397,46 +1111,23 @@
                     sliderContainer.appendChild(track);
 
                     footer.appendChild(playBtn);
-                    footer.appendChild(foldBtn);
                     footer.appendChild(sliderContainer);
-
-                    // 频谱
-                    const spectrum = document.createElement('div');
-                    spectrum.className = 'spectrum-container';
-                    const bars = [];
-                    // 生成10条随机高度的线条
-                    const barCount = 10;
-                    for (let i = 0; i < barCount; i++) {
-                        const bar = document.createElement('div');
-                        bar.className = 'spectrum-bar';
-                        // 随机高度 6-24px
-                        const height = 6 + Math.floor(Math.random() * 19);
-                        bar.style.height = height + 'px';
-                        spectrum.appendChild(bar);
-                        bars.push(bar);
-                    }
-                    spectrumBars[idx] = bars;
 
                     card.appendChild(header);
                     card.appendChild(footer);
-                    card.appendChild(spectrum);
                     grid.appendChild(card);
 
                     volumes[idx] = 0.5;
-
-                    foldBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        toggleFold(idx, foldBtn, sliderContainer);
-                    });
                 });
 
+                // 滑块拖动逻辑
                 let activeDragIndex = null;
                 let isDragging = false;
 
                 function startDrag(e, idx) {
                     e.preventDefault();
                     const container = document.querySelector(`.slider-container[data-index="${idx}"]`);
-                    if (!container || !container.classList.contains('active') || container.classList.contains('hidden')) return;
+                    if (!container || !container.classList.contains('active')) return;
                     activeDragIndex = idx;
                     isDragging = true;
                     updateVolumeFromEvent(e, idx);
@@ -1485,6 +1176,7 @@
                 document.addEventListener('touchcancel', onDragEnd);
             }
 
+            // 主音量拖动
             (function initMasterSlider() {
                 let isDraggingMaster = false;
                 masterSliderContainer.addEventListener('mousedown', startMasterDrag);
@@ -1531,6 +1223,7 @@
                 document.addEventListener('touchcancel', () => { isDraggingMaster = false; });
             })();
 
+            // 自定义音量滑块
             (function initCustomSlider() {
                 let isDraggingCustom = false;
                 customSliderContainer.addEventListener('mousedown', startCustomDrag);
@@ -1576,6 +1269,7 @@
                 document.addEventListener('touchcancel', () => { isDraggingCustom = false; });
             })();
 
+            // 上传音频处理
             fileInput.addEventListener('change', (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
@@ -1662,65 +1356,45 @@
                 }
             });
 
-            function applyHexColor(hex) {
-                document.body.style.setProperty('--primary-color', hex);
-                logEvent(`主题色更改为: ${hex}`);
-            }
-
+            // ---------- HEX输入框修复 ----------
+            // 实时输入时只允许十六进制字符，并限制长度
             hexInput.addEventListener('input', (e) => {
                 let val = e.target.value.replace(/[^0-9a-fA-F]/g, '').slice(0, 6);
                 e.target.value = val;
+                // 不在此处应用颜色，只做输入限制
             });
 
-            function applyHexFromInput() {
+            // 当输入框失去焦点或按下回车时应用颜色
+            function applyHexColor() {
                 let val = hexInput.value.trim();
                 if (val.length === 0) {
-                    val = '006a6a';
+                    val = '006a6a'; // 默认
                 } else if (val.length < 6) {
+                    // 不足6位补0
                     val = val.padEnd(6, '0');
                 }
                 hexInput.value = val;
                 const fullHex = '#' + val;
-                applyHexColor(fullHex);
-                if (cardColorCheckbox.checked) {
-                    updateCardColors();
-                }
-                saveSettings();
+                document.documentElement.style.setProperty('--md-sys-color-primary', fullHex);
+                logEvent(`主题色更改为: ${fullHex}`);
             }
 
-            hexConfirmBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                applyHexFromInput();
-            });
+            hexInput.addEventListener('blur', applyHexColor);
             hexInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
                     e.preventDefault();
-                    applyHexFromInput();
+                    hexInput.blur(); // 触发blur事件
                 }
             });
 
+            // 初始化
             hexInput.value = '006a6a';
-            applyHexColor('#006a6a');
-
-            cardColorCheckbox.addEventListener('change', () => {
-                updateToggleClass();
-                updateCardColors();
-                saveSettings();
-                logEvent(`卡片颜色同步: ${cardColorCheckbox.checked ? '开启' : '关闭'}`);
-            });
-            cardColorToggle.addEventListener('click', () => {
-                cardColorCheckbox.checked = !cardColorCheckbox.checked;
-                updateToggleClass();
-                updateCardColors();
-                saveSettings();
-                logEvent(`卡片颜色同步: ${cardColorCheckbox.checked ? '开启' : '关闭'}`);
-            });
+            document.documentElement.style.setProperty('--md-sys-color-primary', '#006a6a');
 
             columnSelect.addEventListener('change', (e) => {
                 const cols = e.target.value;
                 grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
                 logEvent(`列数更改为: ${cols}`);
-                saveSettings();
             });
 
             startStopBtn.addEventListener('click', () => {
@@ -1734,10 +1408,9 @@
                 }
             });
 
-            loadSettings();
+            // 初始化
             buildCategoryNav();
             buildGrid();
-            updateToggleClass();
             logEvent('页面初始化完成');
             window.addEventListener('beforeunload', () => { if (audioCtx) audioCtx.close(); });
         })();
