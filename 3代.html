@@ -7,12 +7,12 @@
     <style>
         /* ===== 全局变量 ===== */
         :root {
-            --card-radius: 16px;
+            --card-radius: 8px;
             --transition-default: all 0.2s ease;
             --font-sans: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
         }
 
-        /* 浅色主题 (默认) */
+        /* 浅色主题 (默认) - 优化 */
         .light-theme {
             --bg-primary: #f5f7fa;
             --bg-surface: #ffffff;
@@ -28,7 +28,7 @@
             --shadow-color: rgba(0,0,0,0.08);
         }
 
-        /* 深色主题 */
+        /* 深色主题 - 优化 */
         .dark-theme {
             --bg-primary: #121417;
             --bg-surface: #1e2329;
@@ -44,93 +44,249 @@
             --shadow-color: rgba(0,0,0,0.5);
         }
 
-        /* 固态玻璃浅 */
+        /* 固态玻璃浅 - 优化玻璃质感 */
         .glass-light-theme {
-            --bg-primary: rgba(200, 215, 230, 0.4);
-            --bg-surface: rgba(255, 255, 255, 0.2);
-            --bg-surface-hover: rgba(255, 255, 255, 0.35);
-            --bg-surface-variant: rgba(220, 230, 240, 0.3);
+            --bg-primary: rgba(230, 240, 250, 0.4);
+            --bg-surface: rgba(255, 255, 255, 0.25);
+            --bg-surface-hover: rgba(255, 255, 255, 0.45);
+            --bg-surface-variant: rgba(240, 245, 250, 0.35);
             --text-primary: #1a2a3a;
             --text-secondary: #2a4055;
-            --border-color: rgba(255, 255, 255, 0.6);
-            --outline-color: rgba(140, 160, 180, 0.8);
+            --border-color: rgba(255, 255, 255, 0.7);
+            --outline-color: rgba(160, 180, 200, 0.7);
             --primary-color: #2f8f8f;
             --primary-on: #ffffff;
             --primary-container: rgba(47, 143, 143, 0.3);
-            --shadow-color: rgba(30, 60, 80, 0.25);
+            --shadow-color: rgba(30, 60, 80, 0.2);
         }
         .glass-light-theme body {
-            background: linear-gradient(145deg, #aabacf, #8196ab);
+            background: linear-gradient(145deg, #d9e6f2, #b8d0e0);
             backdrop-filter: blur(20px);
         }
+        .glass-light-theme .card,
+        .glass-light-theme .category-container,
+        .glass-light-theme .upload-section,
+        .glass-light-theme .settings-section,
+        .glass-light-theme .search-container {
+            backdrop-filter: blur(25px);
+            background: linear-gradient(145deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
+            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 15px 35px 0 rgba(40, 60, 80, 0.2), inset 0 1px 3px rgba(255,255,255,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-light-theme .card::after,
+        .glass-light-theme .category-container::after,
+        .glass-light-theme .upload-section::after,
+        .glass-light-theme .settings-section::after,
+        .glass-light-theme .search-container::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 60%);
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .glass-light-theme .play-btn,
+        .glass-light-theme .fold-btn,
+        .glass-light-theme .icon-btn {
+            background: rgba(255,255,255,0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.6);
+        }
 
-        /* 固态玻璃深 */
+        /* 固态玻璃深 - 优化玻璃质感 */
         .glass-dark-theme {
-            --bg-primary: rgba(0, 0, 0, 0.65);
-            --bg-surface: rgba(20, 35, 50, 0.5);
-            --bg-surface-hover: rgba(40, 55, 70, 0.6);
-            --bg-surface-variant: rgba(30, 45, 60, 0.6);
+            --bg-primary: rgba(10, 20, 30, 0.6);
+            --bg-surface: rgba(20, 30, 40, 0.4);
+            --bg-surface-hover: rgba(40, 50, 60, 0.6);
+            --bg-surface-variant: rgba(30, 40, 50, 0.5);
             --text-primary: #e0f0ff;
             --text-secondary: #b0c8e0;
-            --border-color: rgba(255, 255, 255, 0.2);
-            --outline-color: rgba(160, 180, 200, 0.7);
+            --border-color: rgba(255, 255, 255, 0.25);
+            --outline-color: rgba(180, 200, 220, 0.6);
             --primary-color: #5fb0b8;
             --primary-on: #ffffff;
             --primary-container: rgba(95, 176, 184, 0.3);
-            --shadow-color: rgba(0,0,0,0.7);
+            --shadow-color: rgba(0,0,0,0.5);
         }
         .glass-dark-theme body {
-            background: linear-gradient(145deg, #1e2f3a, #15242e);
+            background: linear-gradient(145deg, #1a2630, #0f1820);
             backdrop-filter: blur(20px);
         }
+        .glass-dark-theme .card,
+        .glass-dark-theme .category-container,
+        .glass-dark-theme .upload-section,
+        .glass-dark-theme .settings-section,
+        .glass-dark-theme .search-container {
+            backdrop-filter: blur(25px);
+            background: linear-gradient(145deg, rgba(40,55,70,0.4), rgba(20,30,40,0.3));
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 15px 35px 0 rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-dark-theme .card::after,
+        .glass-dark-theme .category-container::after,
+        .glass-dark-theme .upload-section::after,
+        .glass-dark-theme .settings-section::after,
+        .glass-dark-theme .search-container::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 70%);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .glass-dark-theme .play-btn,
+        .glass-dark-theme .fold-btn,
+        .glass-dark-theme .icon-btn {
+            background: rgba(30,45,60,0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
 
-        /* 合成器浪潮主题 (优化渐变) */
-        .synthwave-theme {
-            --bg-primary: #120c1f;
-            --bg-surface: #1e1730;
-            --bg-surface-hover: #2e2345;
-            --bg-surface-variant: #2a1f3a;
-            --text-primary: #ffd6f0;
-            --text-secondary: #ff9ed0;
-            --border-color: #ff5ec4;
-            --outline-color: #b884ff;
-            --primary-color: #ff7ac6;
-            --primary-on: #120c1f;
-            --primary-container: rgba(255, 122, 198, 0.25);
-            --shadow-color: rgba(255, 0, 200, 0.5);
-            --glow-color: #00f2ff;
+        /* 赛博朋克主题 - 增强红/紫动态效果 */
+        .cyber-theme {
+            --bg-primary: #0d020a;
+            --bg-surface: #1f0c1a;
+            --bg-surface-hover: #2f1a2a;
+            --bg-surface-variant: #2a1522;
+            --text-primary: #ffe0f0;
+            --text-secondary: #ffa0c0;
+            --border-color: #ff0080;
+            --outline-color: #ff40a0;
+            --primary-color: #ff0066;
+            --primary-on: #000000;
+            --primary-container: rgba(255, 0, 102, 0.3);
+            --shadow-color: rgba(255, 0, 102, 0.6);
         }
-        .synthwave-theme body {
-            /* 深色线性渐变 + 粉色→青色径向渐变光晕，用 overlay 混合 */
-            background-image: 
-                linear-gradient(145deg, #1a0b2e, #0c0620),
-                radial-gradient(circle at 30% 40%, rgba(255, 122, 198, 0.6), rgba(0, 242, 255, 0.4) 70%);
-            background-blend-mode: overlay;
-            animation: synthwave-bg-pulse 10s infinite alternate;
+        .cyber-theme body {
+            background: linear-gradient(45deg, #1a0020, #2a0010);
+            animation: cyber-bg-pulse 8s infinite alternate;
         }
-        @keyframes synthwave-bg-pulse {
-            0% { filter: hue-rotate(0deg) brightness(1); }
-            50% { filter: hue-rotate(5deg) brightness(1.1); }
-            100% { filter: hue-rotate(0deg) brightness(1); }
+        @keyframes cyber-bg-pulse {
+            0% { background: #1a001a; filter: hue-rotate(0deg); }
+            50% { background: #2a0018; filter: hue-rotate(5deg); }
+            100% { background: #1a001a; filter: hue-rotate(0deg); }
         }
-        .synthwave-theme .card {
-            border: 1px solid var(--border-color);
-            box-shadow: 0 0 20px var(--glow-color), 0 0 40px rgba(255,122,198,0.3);
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
+        .cyber-theme .card {
+            border: 2px solid #ff0066;
+            box-shadow: 0 0 20px #ff0066, 0 0 40px rgba(255,0,102,0.4);
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(3px);
+            animation: cyber-border-flicker 4s infinite;
         }
-        .synthwave-theme .category-btn.active {
-            background: var(--primary-color);
-            color: #120c1f;
-            border-color: var(--glow-color);
-            box-shadow: 0 0 15px var(--glow-color);
+        @keyframes cyber-border-flicker {
+            0% { border-color: #ff0066; box-shadow: 0 0 20px #ff0066; }
+            25% { border-color: #ff00a0; box-shadow: 0 0 30px #ff00a0; }
+            50% { border-color: #ff0080; box-shadow: 0 0 25px #ff0080; }
+            75% { border-color: #ff40c0; box-shadow: 0 0 35px #ff40c0; }
+            100% { border-color: #ff0066; box-shadow: 0 0 20px #ff0066; }
         }
-        .synthwave-theme .play-btn.active,
-        .synthwave-theme .icon-btn.active {
-            background: var(--primary-color);
-            color: #120c1f;
-            border-color: var(--glow-color);
-            box-shadow: 0 0 10px var(--glow-color);
+        .cyber-theme .card::before {
+            background: linear-gradient(180deg, #ff0066, #ff40a0);
+            width: 4px;
+            animation: cyber-glow-pulse 2s infinite;
+        }
+        @keyframes cyber-glow-pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; filter: brightness(1.3); }
+            100% { opacity: 0.8; }
+        }
+        .cyber-theme .category-btn {
+            border: 1px solid #ff0066;
+            color: #ffc0d0;
+            text-shadow: 0 0 5px #ff0066;
+            background: rgba(255,0,102,0.1);
+            transition: all 0.2s;
+        }
+        .cyber-theme .category-btn:hover {
+            background: rgba(255,0,102,0.3);
+            border-color: #ff00cc;
+            color: #fff;
+            box-shadow: 0 0 15px #ff00cc;
+        }
+        .cyber-theme .category-btn.active {
+            background: #ff0066;
+            color: #000;
+            border-color: #ff40c0;
+            box-shadow: 0 0 20px #ff0066, 0 0 40px #ff40c0;
+            animation: cyber-btn-pulse 1s infinite alternate;
+        }
+        @keyframes cyber-btn-pulse {
+            from { box-shadow: 0 0 10px #ff0066; }
+            to { box-shadow: 0 0 25px #ff40c0; }
+        }
+        .cyber-theme .play-btn,
+        .cyber-theme .fold-btn,
+        .cyber-theme .icon-btn {
+            border-color: #ff0066;
+            color: #ffa0c0;
+            background: rgba(0,0,0,0.6);
+        }
+        .cyber-theme .play-btn.active,
+        .cyber-theme .icon-btn.active {
+            background: #ff0066;
+            color: #000;
+            border-color: #ff40c0;
+            box-shadow: 0 0 20px #ff0066;
+        }
+        .cyber-theme .slider-fill {
+            background: linear-gradient(90deg, #ff0066, #ff40a0);
+        }
+        .cyber-theme .spectrum-bar[style*="var(--primary-color)"] {
+            background: #ff0066 !important;
+            box-shadow: 0 0 8px #ff0066;
+            animation: cyber-bar-twitch 0.2s infinite;
+        }
+        @keyframes cyber-bar-twitch {
+            0% { opacity: 0.8; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.15); }
+            100% { opacity: 0.8; transform: scaleY(1); }
+        }
+        .cyber-theme .title-group span {
+            text-shadow: 0 0 5px #ff0066, 0 0 10px #ff40a0;
+            animation: cyber-text-glitch 6s infinite;
+        }
+        @keyframes cyber-text-glitch {
+            0% { transform: skew(0deg); opacity:1; }
+            2% { transform: skew(2deg); opacity:0.9; text-shadow: 3px 0 0 #ff40a0, -3px 0 0 #ff0066; }
+            4% { transform: skew(0deg); opacity:1; }
+            96% { transform: skew(0deg); opacity:1; }
+            98% { transform: skew(-2deg); opacity:0.9; text-shadow: -3px 0 0 #ff40a0, 3px 0 0 #ff0066; }
+            100% { transform: skew(0deg); opacity:1; }
+        }
+        .cyber-theme .category-tag {
+            border-color: #ff40a0;
+            color: #ffb0c0;
+            background: rgba(255,64,160,0.2);
+        }
+        .cyber-theme .log-btn,
+        .cyber-theme .upload-label {
+            background: #ff0066;
+            color: #000;
+            box-shadow: 0 0 15px #ff0066, 0 0 30px #ff40a0;
+            animation: cyber-btn-pulse 1s infinite alternate;
+        }
+        .cyber-theme .log-btn:hover,
+        .cyber-theme .upload-label:hover {
+            filter: brightness(1.2);
+        }
+        .cyber-theme .search-container input {
+            background: rgba(255,0,102,0.1);
+            border-color: #ff0066;
+            color: #ffe0f0;
+        }
+        .cyber-theme .search-container input:focus {
+            border-color: #ff40c0;
+            box-shadow: 0 0 15px #ff40c0;
         }
 
         /* 全局样式 */
@@ -156,6 +312,7 @@
             width: 100%;
         }
 
+        /* 头部 */
         .header {
             display: flex;
             flex-wrap: wrap;
@@ -284,32 +441,21 @@
 
         .custom-controls {
             display: none;
-            flex-direction: column;
+            align-items: center;
             gap: 0.5rem;
+            flex-wrap: wrap;
             width: 100%;
         }
         .custom-controls.active {
             display: flex;
         }
-        .custom-filename-row {
-            width: 100%;
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            padding: 0.2rem 0;
-        }
         #fileName {
             color: var(--text-secondary);
-            max-width: 100%;
+            max-width: 120px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
             font-size: 0.9rem;
-        }
-        .custom-controls-row {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            width: 100%;
         }
         .icon-btn {
             background: var(--bg-surface);
@@ -356,43 +502,6 @@
             background: var(--primary-color);
             border-radius: 10px;
             pointer-events: none;
-        }
-        /* 全屏按钮行 - 左对齐文字按钮 */
-        .custom-fullscreen-row {
-            display: flex;
-            justify-content: flex-start;
-            width: 100%;
-            margin: 4px 0;
-        }
-        .fullscreen-btn {
-            background: var(--primary-color);
-            color: var(--primary-on);
-            border: none;
-            border-radius: 30px;
-            padding: 0.5rem 1.2rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: filter 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-        .fullscreen-btn:hover:not(:disabled) {
-            filter: brightness(1.1);
-        }
-        .fullscreen-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-        .custom-spectrum-container {
-            display: flex;
-            align-items: flex-end;
-            gap: 6px;
-            height: 30px;
-            margin-top: 4px;
-            width: 100%;
         }
 
         .settings-section {
@@ -496,6 +605,7 @@
             padding-right: 2.5rem;
         }
 
+        /* 卡片颜色同步开关 */
         .toggle-switch {
             position: relative;
             display: inline-block;
@@ -546,10 +656,7 @@
             filter: brightness(1.1);
         }
 
-        /* 分类导航 */
-        .category-container {
-            border-radius: var(--card-radius);
-        }
+        /* 分类导航容器 - 用于滑动高亮 */
         .category-nav-container {
             position: relative;
             width: 100%;
@@ -575,13 +682,14 @@
             text-align: center;
             position: relative;
             z-index: 2;
-            background: transparent;
+            background: transparent; /* 让背景透出滑动块 */
         }
         .category-btn:hover {
             background: var(--primary-container);
             border-color: var(--primary-color);
             color: var(--text-primary);
         }
+        /* 滑动高亮背景 - 动画速度减为0.5s */
         .category-slider {
             position: absolute;
             background: var(--primary-color);
@@ -592,7 +700,7 @@
             opacity: 0.8;
         }
 
-        /* 搜索框 */
+        /* 搜索框 - 增加上方间距 */
         .search-container {
             background: var(--bg-surface);
             border: 1px solid var(--border-color);
@@ -661,6 +769,8 @@
         .card:hover {
             background: var(--bg-surface-hover);
         }
+
+        /* 左侧彩色条 */
         .card::before {
             content: '';
             position: absolute;
@@ -671,6 +781,7 @@
             border-radius: 0 2px 2px 0;
             background-color: var(--card-color, var(--primary-color));
         }
+
         .card-header {
             display: flex;
             justify-content: space-between;
@@ -678,18 +789,21 @@
             margin-bottom: 0.5rem;
             padding-left: 8px;
         }
+
         .title-group {
             display: flex;
             flex-direction: column;
             min-width: 0;
             text-align: left;
         }
+
         .title-group span {
             font-size: 1rem;
             font-weight: 500;
             color: var(--text-primary);
             word-break: break-word;
         }
+
         .category-tag {
             font-size: 0.7rem;
             color: var(--text-secondary);
@@ -700,6 +814,7 @@
             margin-top: 0.2rem;
             border: 1px solid var(--border-color);
         }
+
         .card-footer {
             display: flex;
             flex-wrap: wrap;
@@ -709,6 +824,7 @@
             margin-bottom: 0.5rem;
             min-width: 0;
         }
+
         .play-btn {
             width: 32px;
             height: 32px;
@@ -733,6 +849,7 @@
             color: var(--primary-on);
             border-color: var(--primary-color);
         }
+
         .fold-btn {
             width: 32px;
             height: 32px;
@@ -755,6 +872,7 @@
         .fold-btn.folded {
             transform: rotate(-90deg);
         }
+
         .slider-container {
             flex: 1 1 120px;
             min-width: 60px;
@@ -767,6 +885,7 @@
         .slider-container.hidden {
             display: none;
         }
+
         .slider-track {
             width: 100%;
             height: 6px;
@@ -782,6 +901,8 @@
             border-radius: 10px;
             pointer-events: none;
         }
+
+        /* 频谱 */
         .spectrum-container {
             display: flex;
             align-items: flex-end;
@@ -800,9 +921,9 @@
             will-change: height;
         }
 
-        /* 日志模态框 */
+        /* 日志模态框 - 过渡动画 */
         .log-modal {
-            display: flex;
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -812,15 +933,12 @@
             z-index: 1000;
             align-items: center;
             justify-content: center;
-            visibility: hidden;
             opacity: 0;
-            transition: opacity 0.15s ease, visibility 0.15s ease;
-            pointer-events: none;
+            transition: opacity 0.2s ease;
         }
         .log-modal.active {
-            visibility: visible;
+            display: flex;
             opacity: 1;
-            pointer-events: auto;
         }
         .log-content {
             background: var(--bg-surface);
@@ -833,8 +951,8 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            transform: scale(0.92);
-            transition: transform 0.15s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+            transform: scale(0.9);
+            transition: transform 0.2s ease;
         }
         .log-modal.active .log-content {
             transform: scale(1);
@@ -875,78 +993,6 @@
             border-bottom: none;
         }
 
-        /* 全屏播放器 */
-        .fullscreen-player {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-        .fullscreen-player.active {
-            display: flex;
-        }
-        .player-center {
-            position: relative;
-            width: min(70vmin, 350px);
-            height: min(70vmin, 350px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .player-cover {
-            width: 60%;
-            height: 60%;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: min(15vmin, 5rem);
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            box-shadow: 0 0 30px rgba(255,255,255,0.2);
-            cursor: pointer;
-            z-index: 2;
-            transition: transform 0.1s;
-            animation: spin 10s linear infinite;
-        }
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .player-cover:active {
-            transform: scale(0.98);
-        }
-        .player-spectrum {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-        }
-        .spectrum-ring-bar {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 4px;
-            height: 20px;
-            background: var(--primary-color);
-            border-radius: 2px;
-            transform-origin: 50% 0;
-            transform: rotate(0deg) translateY(calc(-1 * var(--radius, 120px)));
-            will-change: height, background;
-            transition: height 0.05s;
-        }
-
         footer {
             margin-top: 2rem;
             text-align: center;
@@ -982,24 +1028,13 @@
                 </label>
                 <input type="file" id="fileInput" accept=".mp3,.wav,.flac,audio/mpeg,audio/wav,audio/flac">
                 <div class="custom-controls" id="customControls">
-                    <div class="custom-filename-row">
-                        <span id="fileName">未选择</span>
-                    </div>
-                    <div class="custom-controls-row">
-                        <button class="icon-btn" id="playPauseCustom">▶️</button>
-                        <div class="custom-slider-container" id="customSliderContainer">
-                            <div class="custom-slider-track">
-                                <div class="custom-slider-fill" id="customFill" style="width:60%"></div>
-                            </div>
+                    <span id="fileName">未选择</span>
+                    <button class="icon-btn" id="playPauseCustom">▶️</button>
+                    <div class="custom-slider-container" id="customSliderContainer">
+                        <div class="custom-slider-track">
+                            <div class="custom-slider-fill" id="customFill" style="width:60%"></div>
                         </div>
                     </div>
-                    <!-- 全屏文字按钮行，左对齐 -->
-                    <div class="custom-fullscreen-row">
-                        <button class="fullscreen-btn" id="fullscreenBtn" disabled>
-                            <span>⤢</span> 全屏播放
-                        </button>
-                    </div>
-                    <div class="custom-spectrum-container" id="customSpectrumContainer"></div>
                 </div>
             </div>
 
@@ -1030,9 +1065,10 @@
                         <option value="dark">深色</option>
                         <option value="glass-light">固态玻璃浅</option>
                         <option value="glass-dark">固态玻璃深</option>
-                        <option value="synthwave">合成器浪潮</option>
+                        <option value="cyber">赛博朋克</option>
                     </select>
                 </div>
+                <!-- 卡片颜色同步开关 -->
                 <div class="setting-item">
                     <label>卡片颜色</label>
                     <div style="display: flex; align-items: center;">
@@ -1046,7 +1082,7 @@
             </div>
         </div>
 
-        <!-- 分类导航卡片 -->
+        <!-- 分类导航卡片（带滑动高亮） -->
         <div class="category-container">
             <div class="category-nav-container">
                 <div id="categoryNav" class="category-nav"></div>
@@ -1073,14 +1109,6 @@
                     <button class="close-btn" id="closeLogBtn">&times;</button>
                 </div>
                 <div class="log-list" id="logList"></div>
-            </div>
-        </div>
-
-        <!-- 全屏播放器 -->
-        <div id="fullscreenPlayer" class="fullscreen-player">
-            <div class="player-center">
-                <div class="player-cover" id="playerCover">?</div>
-                <div class="player-spectrum" id="playerSpectrum"></div>
             </div>
         </div>
     </div>
@@ -1115,11 +1143,6 @@
             const customSliderContainer = document.getElementById('customSliderContainer');
             const customFill = document.getElementById('customFill');
             const customControls = document.getElementById('customControls');
-            const customSpectrumContainer = document.getElementById('customSpectrumContainer');
-            const fullscreenBtn = document.getElementById('fullscreenBtn');
-            const fullscreenPlayer = document.getElementById('fullscreenPlayer');
-            const playerCover = document.getElementById('playerCover');
-            const playerSpectrum = document.getElementById('playerSpectrum');
             const hexInput = document.getElementById('hexInput');
             const hexConfirmBtn = document.getElementById('hexConfirmBtn');
             const columnSelect = document.getElementById('columnSelect');
@@ -1132,6 +1155,8 @@
             const logList = document.getElementById('logList');
             const cardColorCheckbox = document.getElementById('cardColorSyncCheckbox');
             const cardColorToggle = document.getElementById('cardColorToggle');
+
+            // 新增搜索元素
             const searchInput = document.getElementById('searchInput');
             const clearSearchBtn = document.getElementById('clearSearchBtn');
             const searchContainer = document.getElementById('searchContainer');
@@ -1183,6 +1208,7 @@
                 }
             }
 
+            // 应用主题，同时控制HEX是否可用
             function applyTheme(theme) {
                 let className = '';
                 switch (theme) {
@@ -1190,26 +1216,21 @@
                     case 'dark': className = 'dark-theme'; break;
                     case 'glass-light': className = 'glass-light-theme'; break;
                     case 'glass-dark': className = 'glass-dark-theme'; break;
-                    case 'synthwave': className = 'synthwave-theme'; break;
+                    case 'cyber': className = 'cyber-theme'; break;
                     default: className = 'light-theme';
                 }
                 document.body.className = className;
 
-                // 移除之前通过 hex 设置的内联主色，让主题类变量生效
-                document.body.style.removeProperty('--primary-color');
-
-                // 如果是合成器浪潮，禁用 hex 输入框；否则启用并重新应用用户保存的颜色
-                const isSynthwave = theme === 'synthwave';
-                hexInput.disabled = isSynthwave;
-                hexConfirmBtn.disabled = isSynthwave;
-                if (isSynthwave) {
+                // 赛博朋克主题下禁用HEX
+                const isCyber = theme === 'cyber';
+                hexInput.disabled = isCyber;
+                hexConfirmBtn.disabled = isCyber;
+                if (isCyber) {
                     hexInput.style.opacity = '0.5';
                     hexConfirmBtn.style.opacity = '0.5';
                 } else {
                     hexInput.style.opacity = '';
                     hexConfirmBtn.style.opacity = '';
-                    // 重新应用 hexInput 中的颜色（用户之前设置的自定义色）
-                    applyHexColor('#' + hexInput.value);
                 }
             }
 
@@ -1248,100 +1269,12 @@
             let customGain = null;
             let customPlaying = false;
             let customArrayBuffer = null;
-            let customAnalyser = null;
-            let customDataArray = null;
-            let customSpectrumBars = [];
-
-            // 全屏相关
-            let ringBars = [];
-            const RING_BAR_COUNT = 36;
-            let isFullscreenActive = false;
-            let currentRingRadius = 120; // 默认增大
-
-            // 卡片数组，用于性能优化（跳过隐藏卡片）
-            let gridCards = [];
-
-            // 初始化环形频谱条
-            function initRingBars() {
-                playerSpectrum.innerHTML = '';
-                for (let i = 0; i < RING_BAR_COUNT; i++) {
-                    const bar = document.createElement('div');
-                    bar.className = 'spectrum-ring-bar';
-                    playerSpectrum.appendChild(bar);
-                    ringBars.push(bar);
-                }
-                updateRingRadius();
-            }
-            function updateRingRadius() {
-                const cover = playerCover;
-                const coverWidth = cover.offsetWidth;
-                if (coverWidth > 0) {
-                    const radius = coverWidth * 1.2; // 改为1.2倍，使频谱更靠外
-                    currentRingRadius = radius;
-                    ringBars.forEach(bar => {
-                        bar.style.setProperty('--radius', radius + 'px');
-                    });
-                }
-            }
-            window.addEventListener('resize', () => {
-                if (isFullscreenActive) {
-                    updateRingRadius();
-                }
-            });
-
-            // 随机生成两种颜色的渐变
-            function randomGradient() {
-                const hue1 = Math.floor(Math.random() * 360);
-                const hue2 = (hue1 + 40 + Math.floor(Math.random() * 80)) % 360;
-                const color1 = `hsl(${hue1}, 80%, 60%)`;
-                const color2 = `hsl(${hue2}, 80%, 60%)`;
-                return `linear-gradient(135deg, ${color1}, ${color2})`;
-            }
-
-            // 获取文件名的第一个字符
-            function getFirstCharFromFileName() {
-                if (fileInput.files.length > 0) {
-                    const name = fileInput.files[0].name;
-                    const base = name.replace(/\.[^/.]+$/, '');
-                    if (base.length === 0) return '?';
-                    const first = base.charAt(0);
-                    if (/[a-zA-Z]/.test(first)) {
-                        return first.toUpperCase();
-                    }
-                    return first;
-                }
-                return '?';
-            }
-
-            // 全屏按钮点击
-            fullscreenBtn.addEventListener('click', () => {
-                if (!customPlaying || !customAnalyser) {
-                    logEvent('音频未播放，无法打开全屏', true);
-                    return;
-                }
-                playerCover.style.background = randomGradient();
-                playerCover.textContent = getFirstCharFromFileName();
-                fullscreenPlayer.classList.add('active');
-                isFullscreenActive = true;
-                setTimeout(() => updateRingRadius(), 50);
-                logEvent('打开全屏播放器');
-            });
-
-            playerCover.addEventListener('click', () => {
-                fullscreenPlayer.classList.remove('active');
-                isFullscreenActive = false;
-                logEvent('关闭全屏播放器');
-            });
 
             let animFrame = null;
             function startAnimationLoop() {
                 if (animFrame) return;
                 function loop() {
-                    // 更新卡片频谱（跳过隐藏卡片）
                     for (let i = 0; i < activeAnalysers.length; i++) {
-                        const card = gridCards[i];
-                        if (card && card.style.display === 'none') continue;
-
                         if (!activeAnalysers[i]) continue;
                         const analyser = activeAnalysers[i];
                         const dataArray = activeDataArrays[i];
@@ -1369,55 +1302,6 @@
                             }
                         }
                     }
-
-                    // 更新自定义频谱
-                    if (customAnalyser && customPlaying) {
-                        customAnalyser.getByteFrequencyData(customDataArray);
-                        const barCount = customSpectrumBars.length;
-                        const binSize = Math.floor(customDataArray.length / barCount);
-                        for (let j = 0; j < barCount; j++) {
-                            let sum = 0;
-                            for (let k = 0; k < binSize; k++) {
-                                sum += customDataArray[j * binSize + k] || 0;
-                            }
-                            const avg = sum / binSize;
-                            const height = 4 + (avg / 255) * 24;
-                            customSpectrumBars[j].style.height = height + 'px';
-                            customSpectrumBars[j].style.backgroundColor = 'var(--primary-color)';
-                        }
-
-                        // 更新环形频谱（全屏）
-                        if (isFullscreenActive && ringBars.length) {
-                            const data = customDataArray;
-                            const barCount = ringBars.length;
-                            const binSize = Math.floor(data.length / barCount);
-                            for (let j = 0; j < barCount; j++) {
-                                let sum = 0;
-                                const startIdx = j * binSize;
-                                const endIdx = Math.min(startIdx + binSize, data.length);
-                                for (let k = startIdx; k < endIdx; k++) {
-                                    sum += data[k] || 0;
-                                }
-                                const avg = sum / (endIdx - startIdx);
-                                // 高度范围 20~90px，更长
-                                const height = 20 + (avg / 255) * 70;
-                                ringBars[j].style.height = height + 'px';
-                                ringBars[j].style.backgroundColor = 'var(--primary-color)';
-                                const angle = (j / barCount) * 360;
-                                ringBars[j].style.transform = `rotate(${angle}deg) translateY(calc(-1 * var(--radius, ${currentRingRadius}px)))`;
-                            }
-                        }
-                    } else {
-                        customSpectrumBars.forEach(bar => {
-                            bar.style.backgroundColor = 'var(--outline-color)';
-                        });
-                        if (isFullscreenActive) {
-                            ringBars.forEach(bar => {
-                                bar.style.backgroundColor = 'var(--outline-color)';
-                            });
-                        }
-                    }
-
                     animFrame = requestAnimationFrame(loop);
                 }
                 animFrame = requestAnimationFrame(loop);
@@ -1524,6 +1408,7 @@
                 return '氛围';
             }
 
+            // 优化声音参数，并计算频段
             function generateAudioParams(index) {
                 const seed = index * 7919 + 131071;
                 const rand = (min, max) => {
@@ -1552,6 +1437,7 @@
                     const gain = -6 + ((seed * 71 + f * 83) % 13);
                     filters.push({ type: fType, freq, Q, gain });
                 }
+                // 计算频段（取所有滤波器频率的平均值）
                 const avgFreq = filters.reduce((sum, f) => sum + f.freq, 0) / filters.length;
                 let band;
                 if (avgFreq < 200) band = '低频';
@@ -1587,22 +1473,14 @@
                             b5 = -0.7616*b5 - w*0.0168980;
                             const pink = b0+b1+b2+b3+b4+b5+b6 + w*0.5362;
                             b6 = w*0.115926;
-                            // 钳位防止 NaN 或溢出
-                            let val = pink * 0.11;
-                            if (isNaN(val) || val > 1) val = 1;
-                            if (val < -1) val = -1;
-                            data[i] = val;
+                            data[i] = pink * 0.11;
                         }
                     } else { // brown
                         let last = 0;
                         for (let i = 0; i < bufferSize; i++) {
                             const w = Math.random()*2-1;
                             last = (last + (0.02 * w)) / 1.02;
-                            // 钳位
-                            let val = last * 3;
-                            if (val > 1) val = 1;
-                            if (val < -1) val = -1;
-                            data[i] = val;
+                            data[i] = last * 3;
                         }
                     }
                     self.postMessage({ data: data.buffer, index }, [data.buffer]);
@@ -1679,19 +1557,10 @@
                 if (customSource) {
                     try { customSource.stop(); } catch {}
                     customSource = null;
+                    customPlaying = false;
+                    playPauseCustom.innerHTML = '▶️';
+                    playPauseCustom.classList.remove('active');
                 }
-                if (customGain) {
-                    try { customGain.disconnect(); } catch {}
-                    customGain = null;
-                }
-                customPlaying = false;
-                customAnalyser = null;
-                customDataArray = null;
-                customBuffer = null;
-                playPauseCustom.innerHTML = '▶️';
-                playPauseCustom.classList.remove('active');
-                fullscreenBtn.disabled = true;
-
                 await audioCtx.close();
                 audioCtx = null;
                 masterGain = null;
@@ -1701,14 +1570,17 @@
                 stopAnimationLoop();
             }
 
+            // 统一处理播放/暂停/继续
             async function togglePlay(index) {
                 if (!audioCtx) {
                     logEvent('请先启动引擎', true);
                     return;
                 }
 
+                // 如果已经激活，则切换暂停/播放
                 if (isActive[index]) {
                     if (isPlaying[index]) {
+                        // 暂停
                         if (activeGains[index]) {
                             activeGains[index].gain.setValueAtTime(0, audioCtx.currentTime);
                         }
@@ -1720,6 +1592,7 @@
                         }
                         logEvent(`暂停声音: ${soundData[index].name}`);
                     } else {
+                        // 恢复播放
                         if (activeGains[index]) {
                             activeGains[index].gain.setValueAtTime(volumes[index], audioCtx.currentTime);
                         }
@@ -1734,6 +1607,7 @@
                     return;
                 }
 
+                // 否则首次加载并播放
                 const sound = soundData[index];
                 const volume = volumes[index] || 0.5;
 
@@ -1759,8 +1633,9 @@
                         }
                     }
 
+                    // 创建 Analyser
                     const analyser = audioCtx.createAnalyser();
-                    analyser.fftSize = 256;
+                    analyser.fftSize = 32;
                     const dataArray = new Uint8Array(analyser.frequencyBinCount);
                     lastNode.connect(analyser);
 
@@ -1806,9 +1681,9 @@
                 }
             }
 
+            // 分类与频段过滤
             let currentCategory = 'all';
             let currentBand = null;
-            let currentSearchTerm = '';
 
             function applyFilters() {
                 const cards = document.querySelectorAll('.card');
@@ -1823,6 +1698,7 @@
                 });
             }
 
+            // 更新滑动高亮（支持多行）
             function updateSlider(activeBtn) {
                 if (!activeBtn) return;
                 const navRect = categoryNav.getBoundingClientRect();
@@ -1836,8 +1712,11 @@
             }
 
             function buildCategoryNav() {
+                // 获取所有分类（包括原有的和新增的频段）
                 const cats = [...new Set(soundData.map(item => item.category))].sort();
+                // 添加频段标签
                 const bandLabels = ['低频', '中频', '高频'];
+                // 全部 + 分类 + 频段
                 categoryNav.innerHTML = '<button class="category-btn active" data-category="all">全部</button>';
                 cats.forEach(cat => {
                     const btn = document.createElement('button');
@@ -1846,6 +1725,7 @@
                     btn.textContent = cat;
                     categoryNav.appendChild(btn);
                 });
+                // 添加频段按钮，使用 data-band 属性
                 bandLabels.forEach(band => {
                     const btn = document.createElement('button');
                     btn.className = 'category-btn';
@@ -1854,6 +1734,7 @@
                     categoryNav.appendChild(btn);
                 });
 
+                // 初始化滑动高亮
                 setTimeout(() => {
                     const activeBtn = categoryNav.querySelector('.active');
                     if (activeBtn) updateSlider(activeBtn);
@@ -1861,10 +1742,12 @@
 
                 categoryNav.querySelectorAll('.category-btn').forEach(btn => {
                     btn.addEventListener('click', () => {
+                        // 移除所有 active
                         categoryNav.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
                         btn.classList.add('active');
                         updateSlider(btn);
 
+                        // 判断是分类还是频段
                         if (btn.dataset.category !== undefined) {
                             currentCategory = btn.dataset.category;
                             currentBand = null;
@@ -1877,6 +1760,8 @@
                     });
                 });
             }
+
+            let currentSearchTerm = '';
 
             function toggleFold(index, foldBtn, sliderContainer) {
                 const isFolded = foldBtn.classList.toggle('folded');
@@ -1898,12 +1783,10 @@
             function buildGrid() {
                 grid.innerHTML = '';
                 spectrumBars.length = 0;
-                gridCards = [];
 
                 soundData.forEach((item, idx) => {
                     const card = document.createElement('div');
                     card.className = 'card';
-                    card.dataset.index = idx;
                     const hue = baseHues[idx];
                     card.style.setProperty('--card-color', cardColorCheckbox.checked ? 'var(--primary-color)' : `hsl(${hue}, 80%, 55%)`);
 
@@ -1955,7 +1838,8 @@
                     for (let i = 0; i < barCount; i++) {
                         const bar = document.createElement('div');
                         bar.className = 'spectrum-bar';
-                        bar.style.height = '6px';
+                        const height = 6 + Math.floor(Math.random() * 19);
+                        bar.style.height = height + 'px';
                         spectrum.appendChild(bar);
                         bars.push(bar);
                     }
@@ -1965,7 +1849,6 @@
                     card.appendChild(footer);
                     card.appendChild(spectrum);
                     grid.appendChild(card);
-                    gridCards.push(card);
 
                     volumes[idx] = 0.5;
                     isPlaying[idx] = false;
@@ -2124,17 +2007,6 @@
                 document.addEventListener('touchcancel', () => { isDraggingCustom = false; });
             })();
 
-            // 初始化自定义频谱条 (10个)
-            if (customSpectrumContainer) {
-                for (let i = 0; i < 10; i++) {
-                    const bar = document.createElement('div');
-                    bar.className = 'spectrum-bar';
-                    bar.style.height = '6px';
-                    customSpectrumContainer.appendChild(bar);
-                    customSpectrumBars.push(bar);
-                }
-            }
-
             fileInput.addEventListener('change', (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
@@ -2148,8 +2020,6 @@
                 }
                 customPlaying = false;
                 customBuffer = null;
-                customAnalyser = null;
-                fullscreenBtn.disabled = true;
                 logEvent(`上传文件: ${file.name}`);
 
                 const reader = new FileReader();
@@ -2198,10 +2068,8 @@
                         customSource = null;
                     }
                     customPlaying = false;
-                    customAnalyser = null;
                     playPauseCustom.innerHTML = '▶️';
                     playPauseCustom.classList.remove('active');
-                    fullscreenBtn.disabled = true;
                     logEvent('暂停上传音频');
                 } else {
                     if (customSource) {
@@ -2211,24 +2079,16 @@
                     customSource = audioCtx.createBufferSource();
                     customSource.buffer = customBuffer;
                     customSource.loop = true;
-
-                    customAnalyser = audioCtx.createAnalyser();
-                    customAnalyser.fftSize = 256;
-                    customDataArray = new Uint8Array(customAnalyser.frequencyBinCount);
-
                     if (!customGain) {
                         customGain = audioCtx.createGain();
                         customGain.gain.value = parseFloat(customFill.style.width) / 100 || 0.6;
                         customGain.connect(masterGain);
                     }
-
-                    customSource.connect(customAnalyser);
-                    customAnalyser.connect(customGain);
+                    customSource.connect(customGain);
                     customSource.start(0);
                     customPlaying = true;
                     playPauseCustom.innerHTML = '⏸️';
                     playPauseCustom.classList.add('active');
-                    fullscreenBtn.disabled = false;
                     logEvent('播放上传音频');
                 }
             });
@@ -2322,13 +2182,11 @@
                 applyFilters();
             });
 
+            // 窗口大小改变时重新计算滑动条位置（防止偏移）
             window.addEventListener('resize', () => {
                 const activeBtn = categoryNav.querySelector('.active');
                 if (activeBtn) updateSlider(activeBtn);
             });
-
-            // 初始化环形频谱
-            initRingBars();
 
             loadSettings();
             buildCategoryNav();
